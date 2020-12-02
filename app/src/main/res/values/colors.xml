@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    //Application Color
+    <color name="mansun_yellow">#FFFFC42D</color>
+    <color name="mansun_blue">#FF2BA6FF</color>
+
+    //Proker CardView Label Color
+    <color name="proker_label_green">#FF47FC2A</color>
+    <color name="proker_label_blue">#FF2A65FC</color>
+    <color name="proker_label_red">#FFFC2A2A</color>
+
+    //Button Color
+    <color name="button_green">#FF6FC272</color>
+    <color name="button_blue">#FF1789FC</color>
+    <color name="button_red">#FFEB5757</color>
 </resources>
