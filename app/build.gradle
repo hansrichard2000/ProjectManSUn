@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    apply plugin: 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -51,7 +51,7 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
-    def navVersion = '2.3.0'
+    def navVersion = '2.3.1'
     implementation "androidx.navigation:navigation-fragment:$navVersion"
     implementation "androidx.navigation:navigation-ui:$navVersion"
     implementation "androidx.navigation:navigation-runtime:$navVersion"
