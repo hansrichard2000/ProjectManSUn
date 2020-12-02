@@ -1,4 +1,4 @@
-package com.uc.projectmansun.ui.main;
+package com.uc.projectmansun.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
