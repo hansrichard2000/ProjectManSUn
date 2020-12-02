@@ -1,8 +1,10 @@
-package com.uc.projectmansun;
+package com.uc.projectmansun.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.uc.projectmansun.R;
 
 public class MainActivity extends AppCompatActivity {
 
