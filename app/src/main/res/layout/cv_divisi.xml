@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/teal_700">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                 app:srcCompat="@drawable/draf2" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/background_judul_divisi"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:alpha="0.875"
@@ -47,23 +46,24 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:paddingLeft="15dp"
-                android:text="TextView"
+                android:paddingRight="15dp"
+                android:text="Judul Divisi"
                 android:textAlignment="inherit"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/cv_label_divisi"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/cv_label_divisi"
                 android:layout_width="16dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/proker_divisi_label_red" />
+                app:srcCompat="@drawable/proker_divisi_label_blue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
