@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/splashFragment2">
 
-    <activity
-        android:id="@+id/splashScreen"
-        android:name="com.uc.projectmansun.ui.splash.SplashScreen"
-        android:label="activity_splash_screen"
-        tools:layout="@layout/activity_splash_screen" />
+    <fragment
+        android:id="@+id/berandaFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.BerandaFragment"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" />
+    <fragment
+        android:id="@+id/splashFragment2"
+        android:name="com.uc.projectmansun.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
 </navigation>
