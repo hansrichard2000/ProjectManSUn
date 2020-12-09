@@ -7,4 +7,9 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgotpassword">Lupa Kata Sandi?</string>
+    <string name="beranda">Beranda</string>
+    <string name="jadwal">Jadwal</string>
+    <string name="notifikasi">Notifikasi</string>
+    <string name="profil">Profil</string>
+    <string name="berlangsung">berlangsung</string>
 </resources>
