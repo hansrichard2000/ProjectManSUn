@@ -4,7 +4,10 @@
         android:color="@android:color/white"
         android:state_checked="true"
         android:title="active" />
+
     <item
         android:color="@android:color/black"
+        android:state_checked="false"
         android:title="not_active" />
+
 </selector>
