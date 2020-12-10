@@ -12,4 +12,8 @@
     <string name="notifikasi">Notifikasi</string>
     <string name="profil">Profil</string>
     <string name="berlangsung">berlangsung</string>
+    <string name="roles">Roles</string>
+    <string name="saranmasukan">Saran dan Masukan</string>
+    <string name="setting">Pengaturan</string>
+    <string name="keluar">Keluar</string>
 </resources>
