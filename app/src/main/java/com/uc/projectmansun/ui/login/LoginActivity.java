@@ -55,12 +55,9 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher {
             btn_login.setEnabled(false);
         }
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pass)){
-                    Toast.makeText(LoginActivity.this, "Insert Credentials", Toast.LENGTH_SHORT).show();
-                }
+        btn_login.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pass)){
+                Toast.makeText(LoginActivity.this, "Insert Credentials", Toast.LENGTH_SHORT).show();
             }
         });
     }
