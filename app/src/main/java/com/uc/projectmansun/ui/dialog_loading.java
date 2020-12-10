@@ -1,22 +1,16 @@
 package com.uc.projectmansun.ui;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.uc.projectmansun.R;
 
-public class dialog_loading {
-
-    public dialog_loading(){}
-
-    public static final Dialog loading (Context context){
-        final Dialog dialog = new Dialog(context);
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View loadingdialog = layoutInflater.inflate(R.layout.loading_dialog, null);
-        dialog.setContentView(loadingdialog);
-        dialog.setCancelable(false);
-        return dialog;
+public class dialog_loading extends AppCompatActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading_dialog);
     }
 }
