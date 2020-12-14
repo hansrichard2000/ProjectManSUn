@@ -4,13 +4,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.ui.MainActivity;
 import com.uc.projectmansun.ui.main.beranda.tugas.detail.DetailTugasFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LoginFragment extends Fragment {
+
+    @BindView(R.id.loginbtn)
+    Button button;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -56,5 +69,21 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        button.setOnClickListener(view1 -> {
+            NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDialogLoading();
+            Navigation.findNavController(view1).navigate(actions);
+        });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((MainActivity)getActivity()).getSupportActionBar().hide();
     }
 }
