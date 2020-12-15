@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.ui.login.LoginFragment;
 import com.uc.projectmansun.ui.main.beranda.BerandaFragment;
 import com.uc.projectmansun.ui.main.jadwal.JadwalFragment;
 import com.uc.projectmansun.ui.main.notifikasi.NotifikasiFragment;
@@ -37,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
 //        navController = Navigation.findNavController(this, R.id.fragment);
 //        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
 //            if (destination.getId() == R.id.berandaFragment || destination.getId() == R.id.jadwalFragment || destination.getId() == R.id.notifikasiFragment || destination.getId() == R.id.profilFragment){
-//                navigationView.setVisibility(View.VISIBLE);
+//                bottomNavigationView.setVisibility(View.VISIBLE);
 //            }else {
-//                navigationView.setVisibility(View.GONE);
+//                bottomNavigationView.setVisibility(View.GONE);
 //            }
 //        });
 //        NavigationUI.setupActionBarWithNavController(this, navController, configuration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+//        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 //
 //    }
 //
