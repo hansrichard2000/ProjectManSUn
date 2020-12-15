@@ -16,7 +16,6 @@ import com.uc.projectmansun.R;
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
-    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,39 +46,5 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
     }
-
-//        bottomNavigationView = findViewById(R.id.nav_view);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new BerandaFragment()).commit();
-//
-//    }
-//
-//    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-//        @Override
-//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//            Fragment fragment = null;
-//            switch (item.getItemId()){
-//                case R.id.beranda:
-//                    fragment = new BerandaFragment();
-//                    break;
-//                case R.id.jadwal:
-//                    fragment = new JadwalFragment();
-//                    break;
-//                case R.id.notifikasi:
-//                    fragment = new NotifikasiFragment();
-//                    break;
-//                case R.id.profil:
-//                    fragment = new ProfilFragment();
-//                    break;
-////                case R.id.login:
-////                    fragment = new BerandaFragment();
-////                    break;
-//            }
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment).commit();
-//
-//            return true;
-//        }
-//    };
 
 }
