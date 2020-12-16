@@ -9,20 +9,37 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.response.TokenResponse;
 import com.uc.projectmansun.ui.MainActivity;
 import com.uc.projectmansun.ui.main.beranda.tugas.detail.DetailTugasFragment;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginFragment extends Fragment {
 
+    @BindView(R.id.email_login)
+    TextInputLayout email_login;
+
+    @BindView(R.id.password_login)
+    TextInputLayout password_login;
+
     @BindView(R.id.loginbtn)
     Button button;
+
+    private LoginViewModel loginViewModel;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,10 +92,33 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        button.setOnClickListener(view1 -> {
-            NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDialogLoading();
-            Navigation.findNavController(view1).navigate(actions);
-        });
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+
+        loginViewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+//        button.setOnClickListener(view1 -> {
+//            NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDialogLoading();
+//            Navigation.findNavController(view1).navigate(actions);
+//        });
+    }
+
+    @OnClick({R.id.loginbtn})
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.loginbtn:
+                if(!email_login.getEditText().toString().isEmpty() && !password_login.getEditText().toString().isEmpty()){
+                    String email = email_login.getEditText().toString().trim();
+                    String password = password_login.getEditText().toString().trim();
+                    loginViewModel.login(email, password).observe(requireActivity(), tokenResponse -> {
+                        if (tokenResponse != null){
+                            helper.saveAccessToken(tokenResponse.getAuthorization());
+                            NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDialogLoading();
+                            Navigation.findNavController(view).navigate(actions);
+                        }
+                    });
+                }
+                break;
+        }
     }
 
     @Override
