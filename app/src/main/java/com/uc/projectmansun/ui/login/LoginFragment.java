@@ -106,9 +106,9 @@ public class LoginFragment extends Fragment {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.loginbtn:
-                if(!email_login.getEditText().toString().isEmpty() && !password_login.getEditText().toString().isEmpty()){
-                    String email = email_login.getEditText().toString().trim();
-                    String password = password_login.getEditText().toString().trim();
+                if(!email_login.getEditText().getText().toString().isEmpty() && !password_login.getEditText().getText().toString().isEmpty()){
+                    String email = email_login.getEditText().getText().toString().trim();
+                    String password = password_login.getEditText().getText().toString().trim();
                     loginViewModel.login(email, password).observe(requireActivity(), tokenResponse -> {
                         if (tokenResponse != null){
                             helper.saveAccessToken(tokenResponse.getAuthorization());

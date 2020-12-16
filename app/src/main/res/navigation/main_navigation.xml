@@ -81,15 +81,6 @@
         android:label="fragment_detail_tugas"
         tools:layout="@layout/fragment_detail_tugas" />
     <fragment
-        android:id="@+id/dialog_loading"
-        android:name="com.uc.projectmansun.ui.dialog_loading"
-        android:label="loading_dialog"
-        tools:layout="@layout/loading_dialog" >
-        <action
-            android:id="@+id/action_dialog_loading_to_berandaFragment"
-            app:destination="@id/berandaFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/profilFragment"
         android:name="com.uc.projectmansun.ui.main.profil.ProfilFragment"
         android:label="fragment_profil"
@@ -99,4 +90,13 @@
         android:name="com.uc.projectmansun.ui.main.notifikasi.NotifikasiFragment"
         android:label="fragment_notifikasi"
         tools:layout="@layout/fragment_notifikasi" />
+    <fragment
+        android:id="@+id/dialog_loading"
+        android:name="com.uc.projectmansun.ui.dialog_loading"
+        android:label="loading_dialog"
+        tools:layout="@layout/loading_dialog" >
+        <action
+            android:id="@+id/action_dialog_loading_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+    </fragment>
 </navigation>
