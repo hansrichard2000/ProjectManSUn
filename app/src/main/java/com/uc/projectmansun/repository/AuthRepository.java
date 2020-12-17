@@ -1,11 +1,13 @@
 package com.uc.projectmansun.repository;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.uc.projectmansun.model.response.TokenResponse;
 import com.uc.projectmansun.network.RetrofitService;
+import com.uc.projectmansun.ui.login.LoginFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,12 +35,16 @@ public class AuthRepository {
         apiService.login(email, password).enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
-                Log.d(TAG, "onResponse"+response.code());
                 if (response.isSuccessful()){
-                    if (response.body() != null){
-                        Log.d(TAG, "onResponse" + response.body().getAccessToken());
-                        tokenResponse.postValue(response.body());
+                    Log.d(TAG, "onResponse"+response.code());
+                    if (response.code() == 200){
+                        if (response.body() != null){
+                            Log.d(TAG, "onResponse" + response.body().getAccessToken());
+                            tokenResponse.postValue(response.body());
+                        }
                     }
+                } else {
+                    Log.d(TAG, "onResponse: " + response.code());
                 }
             }
 

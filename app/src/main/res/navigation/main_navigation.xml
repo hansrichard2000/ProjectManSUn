@@ -84,7 +84,11 @@
         android:id="@+id/profilFragment"
         android:name="com.uc.projectmansun.ui.main.profil.ProfilFragment"
         android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_profil" >
+        <action
+            android:id="@+id/action_profilFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notifikasiFragment"
         android:name="com.uc.projectmansun.ui.main.notifikasi.NotifikasiFragment"
