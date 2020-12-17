@@ -5,12 +5,26 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import java.util.Objects;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +32,12 @@ import com.uc.projectmansun.R;
  * create an instance of this fragment.
  */
 public class ProfilFragment extends Fragment {
+
+    @BindView(R.id.logout_button)
+    Button logout;
+
+    private ProfilViewModel profilViewModel;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,5 +89,32 @@ public class ProfilFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        profilViewModel = ViewModelProviders.of(requireActivity()).get(ProfilViewModel.class);
+        profilViewModel.init(helper.getAccessToken());
+
+    }
+
+    @OnClick(R.id.logout_button)
+    public void logout(View view) {
+        if (view.getId() == R.id.logout_button) {
+            profilViewModel.logout().observe(requireActivity(), s -> {
+                if (!s.isEmpty()) {
+                    helper.clearPref();
+                    NavDirections action = ProfilFragmentDirections.actionProfilFragmentToLoginFragment();
+                    Navigation.findNavController(view).navigate(action);
+                    Toast.makeText(ProfilFragment.this.getActivity(), s, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
     }
 }

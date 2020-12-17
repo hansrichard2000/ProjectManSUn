@@ -15,6 +15,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -81,6 +84,20 @@
         android:label="fragment_detail_tugas"
         tools:layout="@layout/fragment_detail_tugas" />
     <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.uc.projectmansun.ui.main.profil.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil" >
+        <action
+            android:id="@+id/action_profilFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notifikasiFragment"
+        android:name="com.uc.projectmansun.ui.main.notifikasi.NotifikasiFragment"
+        android:label="fragment_notifikasi"
+        tools:layout="@layout/fragment_notifikasi" />
+    <fragment
         android:id="@+id/dialog_loading"
         android:name="com.uc.projectmansun.ui.dialog_loading"
         android:label="loading_dialog"
@@ -89,14 +106,4 @@
             android:id="@+id/action_dialog_loading_to_berandaFragment"
             app:destination="@id/berandaFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/profilFragment"
-        android:name="com.uc.projectmansun.ui.main.profil.ProfilFragment"
-        android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" />
-    <fragment
-        android:id="@+id/notifikasiFragment"
-        android:name="com.uc.projectmansun.ui.main.notifikasi.NotifikasiFragment"
-        android:label="fragment_notifikasi"
-        tools:layout="@layout/fragment_notifikasi" />
 </navigation>
