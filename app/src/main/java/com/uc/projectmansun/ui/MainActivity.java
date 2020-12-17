@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.berandaFragment || destination.getId() == R.id.jadwalFragment || destination.getId() == R.id.notifikasiFragment || destination.getId() == R.id.profilFragment){
                 navigationView.setVisibility(View.VISIBLE);
+                getSupportActionBar().hide();
             }else {
                 navigationView.setVisibility(View.GONE);
             }

@@ -5,16 +5,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Periode;
+import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,13 +33,16 @@ import butterknife.BindView;
  * create an instance of this fragment.
  */
 public class BerandaFragment extends Fragment {
-//    @BindView(R.id.loading_animation)
-//    LottieAnimationView loading;
+
+    @BindView(R.id.loading_bar)
+    ProgressBar loading_bar;
 
     @BindView(R.id.rv_periode)
     RecyclerView rv_periode;
 
-
+    private BerandaViewModel berandaViewModel;
+    private BerandaAdapter berandaAdapter;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,5 +94,45 @@ public class BerandaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        showLoading(true);
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        berandaViewModel = ViewModelProviders.of(requireActivity()).get(BerandaViewModel.class);
+        berandaViewModel.init(helper.getAccessToken());
+        berandaViewModel.getPeriode().observe(requireActivity(), observer);
+
+        rv_periode.setLayoutManager(new LinearLayoutManager(getActivity()));
+        berandaAdapter = new BerandaAdapter(getActivity());
+    }
+
+    private Observer<List<Periode>> observer = new Observer<List<Periode>>() {
+        @Override
+        public void onChanged(List<Periode> periodes) {
+            if (periodes != null){
+                berandaAdapter.setPeriodeList(periodes);
+                berandaAdapter.notifyDataSetChanged();
+                rv_periode.setAdapter(berandaAdapter);
+                showLoading(false);
+            }
+        }
+    };
+
+    private void showLoading(Boolean state) {
+        if (state){
+            rv_periode.setVisibility(View.GONE);
+            loading_bar.setVisibility(View.VISIBLE);
+        }
+        else {
+            rv_periode.setVisibility(View.VISIBLE);
+            loading_bar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
     }
 }

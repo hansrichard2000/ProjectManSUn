@@ -36,13 +36,13 @@
                 android:layout_height="0dp"
                 android:alpha="0.875"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/cv_judul_proker"
-                app:layout_constraintStart_toStartOf="@+id/cv_judul_proker"
-                app:layout_constraintTop_toTopOf="@+id/cv_judul_proker"
+                app:layout_constraintEnd_toEndOf="@+id/cv_judul_periode"
+                app:layout_constraintStart_toStartOf="@+id/cv_judul_periode"
+                app:layout_constraintTop_toTopOf="@+id/cv_judul_periode"
                 app:srcCompat="@drawable/periode_background" />
 
             <TextView
-                android:id="@+id/cv_judul_proker"
+                android:id="@+id/cv_judul_periode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="136dp"

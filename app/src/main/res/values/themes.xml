@@ -16,5 +16,6 @@
 
     <style name="MyCustomTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/mansun_blue</item>
+        <item name="colorSecondary">@color/mansun_blue</item>
     </style>
 </resources>
