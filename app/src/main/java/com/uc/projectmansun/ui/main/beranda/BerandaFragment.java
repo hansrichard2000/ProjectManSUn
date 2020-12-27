@@ -135,4 +135,10 @@ public class BerandaFragment extends Fragment {
         super.onDetach();
         getActivity().getViewModelStore().clear();
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getViewModelStore().clear();
+    }
 }

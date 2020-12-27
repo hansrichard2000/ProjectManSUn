@@ -5,10 +5,12 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.uc.projectmansun.repository.PeriodeRepository;
 import com.uc.projectmansun.repository.ProfilRepository;
 
 public class ProfilViewModel extends ViewModel {
     private ProfilRepository repository;
+    private PeriodeRepository periodeRepository;
     private static final String TAG = "ProfilViewModel";
 
     public ProfilViewModel(){
@@ -21,6 +23,7 @@ public class ProfilViewModel extends ViewModel {
     }
 
     public LiveData<String> logout() {
+        repository.resetInstance();
         return repository.logout();
     }
 
