@@ -2,6 +2,8 @@ package com.uc.projectmansun.network;
 
 import com.google.gson.JsonObject;
 import com.uc.projectmansun.model.response.PeriodeResponse;
+import com.uc.projectmansun.model.response.ProfilResponse;
+import com.uc.projectmansun.model.response.ProkerResponse;
 import com.uc.projectmansun.model.response.TokenResponse;
 import com.uc.projectmansun.util.Constants;
 
@@ -56,6 +58,14 @@ public class RetrofitService {
     }
 
     public Call<PeriodeResponse> getPeriode(){return api.getPeriode();}
+
+    public Call<ProkerResponse> getProker(){
+        return api.getProker();
+    }
+
+    public Call<ProfilResponse> getProfil(){
+        return api.getProfil();
+    }
 
     public Call<JsonObject> logout(){
         return api.logout();

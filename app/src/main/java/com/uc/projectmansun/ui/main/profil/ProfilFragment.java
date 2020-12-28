@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.uc.projectmansun.R;
@@ -32,6 +33,18 @@ import butterknife.OnClick;
  * create an instance of this fragment.
  */
 public class ProfilFragment extends Fragment {
+
+    @BindView(R.id.profil_name)
+    TextView profil_name;
+
+    @BindView(R.id.profil_email)
+    TextView profil_email;
+
+    @BindView(R.id.profil_nim)
+    TextView profil_nim;
+
+    @BindView(R.id.profil_jurusan)
+    TextView profil_jurusan;
 
     @BindView(R.id.logout_button)
     Button logout;
@@ -95,6 +108,7 @@ public class ProfilFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         profilViewModel = ViewModelProviders.of(requireActivity()).get(ProfilViewModel.class);
         profilViewModel.init(helper.getAccessToken());
+//        profilViewModel.getProfil().observe(requireActivity(), observer);
 
     }
 
