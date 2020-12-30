@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uc.projectmansun.R;
@@ -38,6 +39,11 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
     public void onBindViewHolder(@NonNull BerandaAdapter.CardViewViewHolder holder, int position) {
         Periode periode = periodeList.get(position);
         holder.tahun_periode.setText(periode.getTahun_periode());
+        holder.nilai.setText(periode.getNilai());
+        holder.itemView.setOnClickListener(view -> {
+//            BerandaFragmentDirections.ActionBerandaFragmentToProkerFragment action = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periodeList);
+//            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     @Override
@@ -46,10 +52,11 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
-        private TextView tahun_periode;
+        private TextView tahun_periode, nilai;
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
             tahun_periode = itemView.findViewById(R.id.cv_judul_periode);
+            nilai = itemView.findViewById(R.id.cv_nilai);
         }
     }
 }
