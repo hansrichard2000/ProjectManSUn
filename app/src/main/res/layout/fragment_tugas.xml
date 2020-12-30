@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="All"
+                android:theme="@style/MyCustomTheme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Approved"
+                android:theme="@style/MyCustomTheme"
                 app:layout_constraintStart_toEndOf="@id/button"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Rejected"
+                android:theme="@style/MyCustomTheme"
                 app:layout_constraintStart_toEndOf="@id/button2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Submitted"
+                android:theme="@style/MyCustomTheme"
                 app:layout_constraintStart_toEndOf="@id/button3"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Not Submitted"
+                android:theme="@style/MyCustomTheme"
                 app:layout_constraintStart_toEndOf="@id/button4"
                 app:layout_constraintTop_toTopOf="parent" />
 

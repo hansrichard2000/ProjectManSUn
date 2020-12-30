@@ -24,6 +24,8 @@ public interface ApiEndPoints {
     @GET("periode/{periode}")
     Call<ProkerResponse> getProker();
 
+//    @GET("proker/{proker}")
+
     @GET("profil")
     Call<ProfilResponse> getProfil();
 

@@ -95,6 +95,6 @@ public class dialog_loading extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        ((MainActivity)getActivity()).getSupportActionBar().show();
+        ((MainActivity)getActivity()).getSupportActionBar().hide();
     }
 }
