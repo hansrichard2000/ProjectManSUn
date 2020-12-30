@@ -3,6 +3,9 @@ package com.uc.projectmansun.model.local;
 import com.google.gson.annotations.SerializedName;
 
 public class Proker {
+    @SerializedName("id")
+    String prokerId;
+
     @SerializedName("nama_proker")
     String nama_proker;
 
@@ -38,6 +41,14 @@ public class Proker {
 
     @SerializedName("created_by")
     String created_by;
+
+    public String getProkerId() {
+        return prokerId;
+    }
+
+    public void setProkerId(String prokerId) {
+        this.prokerId = prokerId;
+    }
 
     public String getNama_proker() {
         return nama_proker;

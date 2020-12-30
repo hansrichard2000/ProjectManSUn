@@ -91,6 +91,10 @@
         <action
             android:id="@+id/action_profilFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="profil"
+            app:argType="com.uc.projectmansun.model.local.Profil"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/notifikasiFragment"

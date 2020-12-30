@@ -3,6 +3,9 @@ package com.uc.projectmansun.model.local;
 import com.google.gson.annotations.SerializedName;
 
 public class Periode {
+    @SerializedName("id")
+    String periodeId;
+
     @SerializedName("tahun_periode")
     String tahun_periode;
 
@@ -11,6 +14,14 @@ public class Periode {
 
     @SerializedName("created_by")
     String created_by;
+
+    public String getPeriodeId() {
+        return periodeId;
+    }
+
+    public void setPeriodeId(String periodeId) {
+        this.periodeId = periodeId;
+    }
 
     public String getTahun_periode() {
         return tahun_periode;

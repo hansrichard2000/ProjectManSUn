@@ -5,6 +5,7 @@ import com.uc.projectmansun.model.response.DivisiResponse;
 import com.uc.projectmansun.model.response.PeriodeResponse;
 import com.uc.projectmansun.model.response.ProfilResponse;
 import com.uc.projectmansun.model.response.ProkerResponse;
+import com.uc.projectmansun.model.response.TaskResponse;
 import com.uc.projectmansun.model.response.TokenResponse;
 import com.uc.projectmansun.util.Constants;
 
@@ -60,8 +61,8 @@ public class RetrofitService {
 
     public Call<PeriodeResponse> getPeriode(){return api.getPeriode();}
 
-    public Call<ProkerResponse> getProker(){
-        return api.getProker();
+    public Call<ProkerResponse> getProker(int id){
+        return api.getProker(id);
     }
 
     public Call<ProfilResponse> getProfil(){
@@ -70,6 +71,10 @@ public class RetrofitService {
 
     public Call<DivisiResponse> getDivisi(){
         return api.getDivisi();
+    }
+
+    public Call<TaskResponse> getTask(){
+        return api.getTask();
     }
 
     public Call<JsonObject> logout(){

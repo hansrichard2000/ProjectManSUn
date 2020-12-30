@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -18,9 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Profil;
 import com.uc.projectmansun.ui.MainActivity;
 import com.uc.projectmansun.util.SharedPreferenceHelper;
 
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -49,6 +52,7 @@ public class ProfilFragment extends Fragment {
     @BindView(R.id.logout_button)
     Button logout;
 
+    private Profil profil;
     private ProfilViewModel profilViewModel;
     private SharedPreferenceHelper helper;
 
@@ -110,7 +114,32 @@ public class ProfilFragment extends Fragment {
         profilViewModel.init(helper.getAccessToken());
 //        profilViewModel.getProfil().observe(requireActivity(), observer);
 
+        if (getArguments() != null){
+            profil = ProfilFragmentArgs.fromBundle(getArguments()).getProfil();
+
+            if (profil != null){
+                initProfil(profil);
+            }
+
+        }
+
     }
+
+    private void initProfil(Profil profil) {
+        profil_name.setText(profil.getUser_name());
+        profil_email.setText(profil.getUser_email());
+        profil_nim.setText(profil.getUser_nim());
+        profil_jurusan.setText(profil.getDepartement_name());
+    }
+
+//    private Observer<List<Profil>> observer = new Observer<List<Profil>>() {
+//        @Override
+//        public void onChanged(List<Profil> profils) {
+//            if (profils != null){
+//
+//            }
+//        }
+//    };
 
     @OnClick(R.id.logout_button)
     public void logout(View view) {
