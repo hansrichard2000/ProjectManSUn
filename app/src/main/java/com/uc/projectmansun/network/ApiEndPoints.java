@@ -1,6 +1,7 @@
 package com.uc.projectmansun.network;
 
 import com.google.gson.JsonObject;
+import com.uc.projectmansun.model.response.DivisiResponse;
 import com.uc.projectmansun.model.response.PeriodeResponse;
 import com.uc.projectmansun.model.response.ProfilResponse;
 import com.uc.projectmansun.model.response.ProkerResponse;
@@ -28,6 +29,9 @@ public interface ApiEndPoints {
 
     @GET("profil")
     Call<ProfilResponse> getProfil();
+
+    @GET("divisi")
+    Call<DivisiResponse> getDivisi();
 
     @POST("api-logout")
     Call<JsonObject> logout();
