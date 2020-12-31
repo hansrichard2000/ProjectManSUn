@@ -9,12 +9,14 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
 
 import butterknife.ButterKnife;
 
@@ -76,12 +78,23 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
 
-        new Handler().postDelayed(() -> {
-            NavDirections action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
+        SharedPreferenceHelper helper = SharedPreferenceHelper.getInstance(requireActivity());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            NavDirections action;
+            if (helper.getAccessToken().isEmpty()){
+                action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
+            } else{
+                action = SplashFragmentDirections.actionSplashFragmentToBerandaFragment();
+            }
             Navigation.findNavController(view).navigate(action);
         }, splashtime);
+        
+//        new Handler().postDelayed(() -> {
+//            NavDirections action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
+//            Navigation.findNavController(view).navigate(action);
+//        }, splashtime);
 
     }
 

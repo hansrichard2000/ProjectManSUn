@@ -25,7 +25,7 @@ public interface ApiEndPoints {
     Call<PeriodeResponse> getPeriode();
 
     @GET("periode/{periode}")
-    Call<ProkerResponse> getProker(@Path("periode")int periodeId);
+    Call<ProkerResponse> getProker();
 
     @GET("proker/{proker}")
     Call<DivisiResponse> getDivisi();

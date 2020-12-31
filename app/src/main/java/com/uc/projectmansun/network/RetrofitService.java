@@ -61,8 +61,8 @@ public class RetrofitService {
 
     public Call<PeriodeResponse> getPeriode(){return api.getPeriode();}
 
-    public Call<ProkerResponse> getProker(int id){
-        return api.getProker(id);
+    public Call<ProkerResponse> getProker(){
+        return api.getProker();
     }
 
     public Call<ProfilResponse> getProfil(){

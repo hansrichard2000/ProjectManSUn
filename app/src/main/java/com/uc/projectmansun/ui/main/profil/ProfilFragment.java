@@ -113,15 +113,15 @@ public class ProfilFragment extends Fragment {
         profilViewModel = ViewModelProviders.of(requireActivity()).get(ProfilViewModel.class);
         profilViewModel.init(helper.getAccessToken());
 //        profilViewModel.getProfil().observe(requireActivity(), observer);
-
-        if (getArguments() != null){
-            profil = ProfilFragmentArgs.fromBundle(getArguments()).getProfil();
-
-            if (profil != null){
-                initProfil(profil);
-            }
-
-        }
+//
+//        if (getArguments() != null){
+//            profil = ProfilFragmentArgs.fromBundle(getArguments()).getProfil();
+//
+//            if (profil != null){
+//                initProfil(profil);
+//            }
+//
+//        }
 
     }
 
