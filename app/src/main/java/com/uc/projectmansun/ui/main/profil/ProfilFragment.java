@@ -112,8 +112,8 @@ public class ProfilFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         profilViewModel = ViewModelProviders.of(requireActivity()).get(ProfilViewModel.class);
         profilViewModel.init(helper.getAccessToken());
-//        profilViewModel.getProfil().observe(requireActivity(), observer);
-//
+        profilViewModel.getProfil().observe(requireActivity(), observer);
+
 //        if (getArguments() != null){
 //            profil = ProfilFragmentArgs.fromBundle(getArguments()).getProfil();
 //
@@ -125,21 +125,25 @@ public class ProfilFragment extends Fragment {
 
     }
 
-    private void initProfil(Profil profil) {
-        profil_name.setText(profil.getUser_name());
-        profil_email.setText(profil.getUser_email());
-        profil_nim.setText(profil.getUser_nim());
-        profil_jurusan.setText(profil.getDepartement_name());
-    }
+//    private void initProfil(Profil profil) {
+//        profil_name.setText(profil.getUser_name());
+//        profil_email.setText(profil.getUser_email());
+//        profil_nim.setText(profil.getUser_nim());
+//        profil_jurusan.setText(profil.getDepartement_name());
+//    }
 
-//    private Observer<List<Profil>> observer = new Observer<List<Profil>>() {
-//        @Override
-//        public void onChanged(List<Profil> profils) {
-//            if (profils != null){
-//
-//            }
-//        }
-//    };
+    private Observer<List<Profil>> observer = new Observer<List<Profil>>() {
+        @Override
+        public void onChanged(List<Profil> profils) {
+            if (profils != null){
+                Profil profil = profils.get(0);
+                profil_name.setText(profil.getUser_name());
+                profil_email.setText(profil.getUser_email());
+                profil_nim.setText(profil.getUser_nim());
+                profil_jurusan.setText(profil.getDepartement_name());
+            }
+        }
+    };
 
     @OnClick(R.id.logout_button)
     public void logout(View view) {

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +44,9 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
         holder.itemView.setOnClickListener(view -> {
 //            BerandaFragmentDirections.ActionBerandaFragmentToProkerFragment action = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periodeList);
 //            Navigation.findNavController(view).navigate(action);
+//            NavDirections actions;
+//            actions = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periode);
+//            Navigation.findNavController(view).navigate(actions);
         });
     }
 
