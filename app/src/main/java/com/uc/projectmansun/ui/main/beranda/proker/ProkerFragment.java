@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +34,15 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class ProkerFragment extends Fragment {
+    private static final String TAG = "ProkerFragment";
+
     @BindView(R.id.progressBarProker)
     ProgressBar loading_bar;
 
     @BindView(R.id.rv_proker)
     RecyclerView rv_proker;
 
+    private Periode periode;
     private ProkerViewModel prokerViewModel;
     private ProkerAdapter prokerAdapter;
     private SharedPreferenceHelper helper;
@@ -97,10 +101,13 @@ public class ProkerFragment extends Fragment {
         showLoading(true);
         Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         prokerViewModel = ViewModelProviders.of(requireActivity()).get(ProkerViewModel.class);
         prokerViewModel.init(helper.getAccessToken());
-        prokerViewModel.getProker().observe(requireActivity(), observer);
+//        Log.d(TAG, "periodeId : " + periode.getPeriodeId());
+        prokerViewModel.getProker(getArguments().getInt("periodeId")).observe(requireActivity(), observer);
+
 
         rv_proker.setLayoutManager(new LinearLayoutManager(getActivity()));
         prokerAdapter = new ProkerAdapter(getActivity());

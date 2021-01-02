@@ -40,6 +40,9 @@ public class DivisiAdapter extends RecyclerView.Adapter<DivisiAdapter.CardViewVi
     public void onBindViewHolder(@NonNull DivisiAdapter.CardViewViewHolder holder, int position) {
         Divisi divisi = divisiList.get(position);
         holder.nama_divisi.setText(divisi.getNama_divisi());
+        holder.itemView.setOnClickListener(view -> {
+
+        });
     }
 
     @Override

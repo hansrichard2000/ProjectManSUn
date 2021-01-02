@@ -45,7 +45,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
 //            BerandaFragmentDirections.actionBerandaFragmentToProkerFragment action = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periodeList);
 //            Navigation.findNavController(view).navigate(action);
             NavDirections actions;
-            actions = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment();
+            actions = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(Integer.parseInt(periode.getPeriodeId()));
             Navigation.findNavController(view).navigate(actions);
         });
     }

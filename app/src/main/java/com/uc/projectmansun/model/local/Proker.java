@@ -1,5 +1,7 @@
 package com.uc.projectmansun.model.local;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Proker {

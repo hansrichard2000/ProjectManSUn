@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_prokerFragment_to_detailProkerFragment"
             app:destination="@id/detailProkerFragment" />
+        <argument
+            android:name="periodeId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/detailProkerFragment"
