@@ -37,10 +37,10 @@ public class ProkerRepository {
         }
     }
 
-    public MutableLiveData<List<Proker>> getProker(){
+    public MutableLiveData<List<Proker>> getProker(int id){
         MutableLiveData<List<Proker>> listProker = new MutableLiveData<>();
 
-        apiService.getProker().enqueue(new Callback<ProkerResponse>() {
+        apiService.getProker(id).enqueue(new Callback<ProkerResponse>() {
             @Override
             public void onResponse(Call<ProkerResponse> call, Response<ProkerResponse> response) {
                 Log.d(TAG, "onResponse: "+response.code());

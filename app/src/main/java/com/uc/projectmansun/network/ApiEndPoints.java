@@ -28,10 +28,10 @@ public interface ApiEndPoints {
     Call<ProkerResponse> getProker(@Path("periode") int periodeId);
 
     @GET("proker/{proker}")
-    Call<DivisiResponse> getDivisi();
+    Call<DivisiResponse> getDivisi(@Path("proker") int prokerId);
 
     @GET("divisi/{divisi}")
-    Call<TaskResponse> getTask();
+    Call<TaskResponse> getTask(@Path("divisi") int divisiId);
 
     @GET("profil")
     Call<ProfilResponse> getProfil();

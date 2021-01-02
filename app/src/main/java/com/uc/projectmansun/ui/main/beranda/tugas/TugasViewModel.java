@@ -23,8 +23,8 @@ public class TugasViewModel extends ViewModel {
         taskRepository = TaskRepository.getInstance(token);
     }
 
-    public LiveData<List<Task>> getTask(){
-        return taskRepository.getTask();
+    public LiveData<List<Task>> getTask(int divisiId){
+        return taskRepository.getTask(divisiId);
     }
 
     @Override

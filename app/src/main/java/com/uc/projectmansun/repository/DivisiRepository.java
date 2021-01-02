@@ -42,10 +42,10 @@ public class DivisiRepository {
         }
     }
 
-    public MutableLiveData<List<Divisi>> getDivisi(){
+    public MutableLiveData<List<Divisi>> getDivisi(int id){
         MutableLiveData<List<Divisi>> listDivisi = new MutableLiveData<>();
 
-        apiService.getDivisi().enqueue(new Callback<DivisiResponse>() {
+        apiService.getDivisi(id).enqueue(new Callback<DivisiResponse>() {
             @Override
             public void onResponse(Call<DivisiResponse> call, Response<DivisiResponse> response) {
                 Log.d(TAG, "onResponse: "+response.code());

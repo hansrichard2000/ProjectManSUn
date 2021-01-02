@@ -37,10 +37,10 @@ public class TaskRepository {
         }
     }
 
-    public MutableLiveData<List<Task>> getTask(){
+    public MutableLiveData<List<Task>> getTask(int id){
         MutableLiveData<List<Task>> listTask = new MutableLiveData<>();
 
-        apiService.getTask().enqueue(new Callback<TaskResponse>() {
+        apiService.getTask(id).enqueue(new Callback<TaskResponse>() {
             @Override
             public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
                 Log.d(TAG, "onResponse: "+response.code());

@@ -23,8 +23,8 @@ public class ProkerViewModel extends ViewModel {
         repository = ProkerRepository.getInstance(token);
     }
 
-    public LiveData<List<Proker>> getProker() {
-        return repository.getProker();
+    public LiveData<List<Proker>> getProker(int periodeId) {
+        return repository.getProker(periodeId);
     }
 
     @Override

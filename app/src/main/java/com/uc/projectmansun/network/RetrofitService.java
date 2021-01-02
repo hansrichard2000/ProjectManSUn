@@ -61,20 +61,20 @@ public class RetrofitService {
 
     public Call<PeriodeResponse> getPeriode(){return api.getPeriode();}
 
-    public Call<ProkerResponse> getProker(){
-        return api.getProker();
+    public Call<ProkerResponse> getProker(int periodeId){
+        return api.getProker(periodeId);
     }
 
     public Call<ProfilResponse> getProfil(){
         return api.getProfil();
     }
 
-    public Call<DivisiResponse> getDivisi(){
-        return api.getDivisi();
+    public Call<DivisiResponse> getDivisi(int prokerId){
+        return api.getDivisi(prokerId);
     }
 
-    public Call<TaskResponse> getTask(){
-        return api.getTask();
+    public Call<TaskResponse> getTask(int divisiId){
+        return api.getTask(divisiId);
     }
 
     public Call<JsonObject> logout(){

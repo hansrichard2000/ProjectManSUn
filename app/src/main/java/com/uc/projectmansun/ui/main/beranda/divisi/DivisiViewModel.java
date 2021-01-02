@@ -23,8 +23,8 @@ public class DivisiViewModel extends ViewModel {
         divisiRepository = DivisiRepository.getInstance(token);
     }
 
-    public LiveData<List<Divisi>> getDivisi() {
-        return divisiRepository.getDivisi();
+    public LiveData<List<Divisi>> getDivisi(int prokerId) {
+        return divisiRepository.getDivisi(prokerId);
     }
 
     @Override
