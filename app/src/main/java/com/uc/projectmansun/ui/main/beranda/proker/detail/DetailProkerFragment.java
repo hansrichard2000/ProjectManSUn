@@ -8,9 +8,33 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Periode;
 import com.uc.projectmansun.ui.main.beranda.proker.ProkerFragment;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import butterknife.BindView;
 
 public class DetailProkerFragment extends Fragment {
+
+    @BindView(R.id.judul_proker)
+    String judul_proker;
+
+    @BindView(R.id.deskripsi_proker)
+    String deskripsi_proker;
+
+    @BindView(R.id.tanggal_proker)
+    String tanggal_proker;
+
+    @BindView(R.id.pemasukan_proker)
+    int pemasukan_proker;
+
+    @BindView(R.id.pengeluaran_proker)
+    int pengeluaran_proker;
+
+    private Periode periode;
+    private DetailProkerViewModel detailProkerViewModel;
+    private SharedPreferenceHelper helper;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

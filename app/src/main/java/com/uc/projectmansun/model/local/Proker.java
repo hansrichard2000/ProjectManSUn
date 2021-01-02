@@ -27,10 +27,10 @@ public class Proker {
     String tanggal_akhir;
 
     @SerializedName("pemasukan")
-    String pemasukan;
+    int pemasukan;
 
     @SerializedName("pengeluaran")
-    String pengeluaran;
+    int pengeluaran;
 
     @SerializedName("medsos")
     String medsos;
@@ -100,19 +100,19 @@ public class Proker {
         this.tanggal_akhir = tanggal_akhir;
     }
 
-    public String getPemasukan() {
+    public int getPemasukan() {
         return pemasukan;
     }
 
-    public void setPemasukan(String pemasukan) {
+    public void setPemasukan(int pemasukan) {
         this.pemasukan = pemasukan;
     }
 
-    public String getPengeluaran() {
+    public int getPengeluaran() {
         return pengeluaran;
     }
 
-    public void setPengeluaran(String pengeluaran) {
+    public void setPengeluaran(int pengeluaran) {
         this.pengeluaran = pengeluaran;
     }
 

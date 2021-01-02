@@ -99,8 +99,7 @@ public class ProkerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         showLoading(true);
-        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Proker");
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         prokerViewModel = ViewModelProviders.of(requireActivity()).get(ProkerViewModel.class);
