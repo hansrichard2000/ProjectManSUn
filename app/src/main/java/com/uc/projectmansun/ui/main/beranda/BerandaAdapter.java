@@ -42,11 +42,11 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
         holder.tahun_periode.setText(periode.getTahun_periode());
         holder.nilai.setText(periode.getNilai());
         holder.itemView.setOnClickListener(view -> {
-//            BerandaFragmentDirections.ActionBerandaFragmentToProkerFragment action = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periodeList);
+//            BerandaFragmentDirections.actionBerandaFragmentToProkerFragment action = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periodeList);
 //            Navigation.findNavController(view).navigate(action);
-//            NavDirections actions;
-//            actions = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment(periode);
-//            Navigation.findNavController(view).navigate(actions);
+            NavDirections actions;
+            actions = BerandaFragmentDirections.actionBerandaFragmentToProkerFragment();
+            Navigation.findNavController(view).navigate(actions);
         });
     }
 

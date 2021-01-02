@@ -95,7 +95,7 @@ public class ProkerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         showLoading(true);
-        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         prokerViewModel = ViewModelProviders.of(requireActivity()).get(ProkerViewModel.class);
@@ -127,6 +127,12 @@ public class ProkerFragment extends Fragment {
             rv_proker.setVisibility(View.VISIBLE);
             loading_bar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity)getActivity()).getSupportActionBar().show();
     }
 
     @Override
