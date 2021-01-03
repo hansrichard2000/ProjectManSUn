@@ -97,7 +97,7 @@ public class DivisiFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         showLoading(true);
-        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Divisi");
+
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         divisiViewModel = ViewModelProviders.of(requireActivity()).get(DivisiViewModel.class);
@@ -112,6 +112,8 @@ public class DivisiFragment extends Fragment {
         @Override
         public void onChanged(List<Divisi> divisis) {
             if (divisis != null){
+                Divisi divisi = divisis.get(0);
+                Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Divisi "+divisi.getNama_proker());
                 divisiAdapter.setDivisiList(divisis);
                 divisiAdapter.notifyDataSetChanged();
                 rv_divisi.setAdapter(divisiAdapter);

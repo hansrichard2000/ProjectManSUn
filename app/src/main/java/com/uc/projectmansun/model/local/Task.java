@@ -1,10 +1,16 @@
 package com.uc.projectmansun.model.local;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Task {
+public class Task implements Parcelable {
     @SerializedName("id")
     String taskId;
+
+    @SerializedName("nama_divisi")
+    String nama_divisi;
 
     @SerializedName("judul")
     String judul;
@@ -30,12 +36,82 @@ public class Task {
     @SerializedName("created_by")
     String created_by;
 
+    public Task()
+    {
+
+    }
+
+    public Task(String taskId, String nama_divisi, String judul, String deskripsi, String deadline, String link_hasil_kerja, String penanggung_jawab, String divisi_id, String status_task_id, String created_by) {
+        this.taskId = taskId;
+        this.nama_divisi = nama_divisi;
+        this.judul = judul;
+        this.deskripsi = deskripsi;
+        this.deadline = deadline;
+        this.link_hasil_kerja = link_hasil_kerja;
+        this.penanggung_jawab = penanggung_jawab;
+        this.divisi_id = divisi_id;
+        this.status_task_id = status_task_id;
+        this.created_by = created_by;
+    }
+
+    protected Task(Parcel in) {
+        taskId = in.readString();
+        nama_divisi = in.readString();
+        judul = in.readString();
+        deskripsi = in.readString();
+        deadline = in.readString();
+        link_hasil_kerja = in.readString();
+        penanggung_jawab = in.readString();
+        divisi_id = in.readString();
+        status_task_id = in.readString();
+        created_by = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(taskId);
+        dest.writeString(nama_divisi);
+        dest.writeString(judul);
+        dest.writeString(deskripsi);
+        dest.writeString(deadline);
+        dest.writeString(link_hasil_kerja);
+        dest.writeString(penanggung_jawab);
+        dest.writeString(divisi_id);
+        dest.writeString(status_task_id);
+        dest.writeString(created_by);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(Parcel in) {
+            return new Task(in);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
+
     public String getTaskId() {
         return taskId;
     }
 
     public void setTaskId(String taskId) {
         this.taskId = taskId;
+    }
+
+    public String getNama_divisi() {
+        return nama_divisi;
+    }
+
+    public void setNama_divisi(String nama_divisi) {
+        this.nama_divisi = nama_divisi;
     }
 
     public String getJudul() {

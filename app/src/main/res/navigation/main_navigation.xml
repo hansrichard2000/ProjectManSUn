@@ -87,12 +87,19 @@
         <action
             android:id="@+id/action_tugasFragment_to_detailTugasFragment"
             app:destination="@id/detailTugasFragment" />
+        <argument
+            android:name="divisiId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/detailTugasFragment"
         android:name="com.uc.projectmansun.ui.main.beranda.tugas.detail.DetailTugasFragment"
         android:label="fragment_detail_tugas"
-        tools:layout="@layout/fragment_detail_tugas" />
+        tools:layout="@layout/fragment_detail_tugas" >
+        <argument
+            android:name="detailTask"
+            app:argType="com.uc.projectmansun.model.local.Task" />
+    </fragment>
     <fragment
         android:id="@+id/profilFragment"
         android:name="com.uc.projectmansun.ui.main.profil.ProfilFragment"

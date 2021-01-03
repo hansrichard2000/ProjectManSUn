@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uc.projectmansun.R;
@@ -41,7 +43,9 @@ public class DivisiAdapter extends RecyclerView.Adapter<DivisiAdapter.CardViewVi
         Divisi divisi = divisiList.get(position);
         holder.nama_divisi.setText(divisi.getNama_divisi());
         holder.itemView.setOnClickListener(view -> {
-
+            NavDirections actions;
+            actions = DivisiFragmentDirections.actionDivisiFragmentToTugasFragment(Integer.parseInt(divisi.getDivisiId()));
+            Navigation.findNavController(view).navigate(actions);
         });
     }
 

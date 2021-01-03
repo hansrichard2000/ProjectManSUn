@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/button_detail_proker"
+                android:id="@+id/button_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -29,43 +29,43 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button_list_divisi"
+                android:id="@+id/button_approved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Approved"
                 android:theme="@style/MyCustomTheme"
-                app:layout_constraintStart_toEndOf="@id/button_detail_proker"
+                app:layout_constraintStart_toEndOf="@id/button_all"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_rejected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Rejected"
                 android:theme="@style/MyCustomTheme"
-                app:layout_constraintStart_toEndOf="@id/button_list_divisi"
+                app:layout_constraintStart_toEndOf="@id/button_approved"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button_submitted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Submitted"
                 android:theme="@style/MyCustomTheme"
-                app:layout_constraintStart_toEndOf="@id/button3"
+                app:layout_constraintStart_toEndOf="@id/button_rejected"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button_not_submitted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Not Submitted"
                 android:theme="@style/MyCustomTheme"
-                app:layout_constraintStart_toEndOf="@id/button4"
+                app:layout_constraintStart_toEndOf="@id/button_submitted"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -91,6 +91,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/cv_task"/>
+
+        <ProgressBar
+            android:id="@+id/loading_task"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/MyCustomTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

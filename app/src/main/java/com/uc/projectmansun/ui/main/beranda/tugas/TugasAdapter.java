@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uc.projectmansun.R;
@@ -32,15 +33,19 @@ public class TugasAdapter extends RecyclerView.Adapter<TugasAdapter.CardViewView
     @NonNull
     @Override
     public TugasAdapter.CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //LAYOUT NYA MASIH KE CV DIVISI
-        View view = LayoutInflater.from(context).inflate(R.layout.cv_divisi, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.cv_task, parent, false);
         return new TugasAdapter.CardViewViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TugasAdapter.CardViewViewHolder holder, int position) {
         Task tugas = tugasList.get(position);
-        holder.nama_proker.setText(tugas.getJudul());
+        holder.judul_task.setText(tugas.getJudul());
+        holder.penanggung_jawab.setText(tugas.getPenanggung_jawab());
+        holder.itemView.setOnClickListener(view -> {
+            TugasFragmentDirections.ActionTugasFragmentToDetailTugasFragment actions = TugasFragmentDirections.actionTugasFragmentToDetailTugasFragment(tugas);
+            Navigation.findNavController(view).navigate(actions);
+        });
     }
 
     @Override
@@ -48,12 +53,12 @@ public class TugasAdapter extends RecyclerView.Adapter<TugasAdapter.CardViewView
         return tugasList.size();
     }
 
-    //BELUM DIPUPDATE
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
-        private TextView nama_proker;
+        private TextView judul_task, penanggung_jawab;
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
-            nama_proker = itemView.findViewById(R.id.cv_judul_proker);
+            judul_task = itemView.findViewById(R.id.judul_task);
+            penanggung_jawab = itemView.findViewById(R.id.penanggung_jawab);
         }
     }
 }
