@@ -6,6 +6,9 @@ public class Divisi {
     @SerializedName("id")
     String divisiId;
 
+    @SerializedName("nama_proker")
+    String nama_proker;
+
     @SerializedName("nama_divisi")
     String nama_divisi;
 
@@ -21,6 +24,14 @@ public class Divisi {
 
     public void setDivisiId(String divisiId) {
         this.divisiId = divisiId;
+    }
+
+    public String getNama_proker() {
+        return nama_proker;
+    }
+
+    public void setNama_proker(String nama_proker) {
+        this.nama_proker = nama_proker;
     }
 
     public String getNama_divisi() {

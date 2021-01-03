@@ -102,7 +102,7 @@ public class DivisiFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         divisiViewModel = ViewModelProviders.of(requireActivity()).get(DivisiViewModel.class);
         divisiViewModel.init(helper.getAccessToken());
-//        divisiViewModel.getDivisi().observe(requireActivity());
+        divisiViewModel.getDivisi(getArguments().getInt("prokerId")).observe(requireActivity(), observer);
 
         rv_divisi.setLayoutManager(new LinearLayoutManager(getActivity()));
         divisiAdapter = new DivisiAdapter(getActivity());
@@ -129,5 +129,17 @@ public class DivisiFragment extends Fragment {
             rv_divisi.setVisibility(View.VISIBLE);
             loading.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getViewModelStore().clear();
     }
 }

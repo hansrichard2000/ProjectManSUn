@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.model.local.Periode;
@@ -24,6 +26,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailProkerFragment extends Fragment {
 
@@ -124,6 +127,15 @@ public class DetailProkerFragment extends Fragment {
         pemasukan_proker.setText(String.valueOf(proker.getPemasukan()));
         pengeluaran_proker.setText(String.valueOf(proker.getPengeluaran()));
         rekapitulasi_proker.setText(String.valueOf(proker.getPemasukan() - proker.getPengeluaran()));
+    }
+
+    @OnClick(R.id.button_list_divisi)
+    public void listDivisi(View view){
+        if (view.getId() == R.id.button_list_divisi){
+            proker = DetailProkerFragmentArgs.fromBundle(getArguments()).getDetailProker();
+            NavDirections action = DetailProkerFragmentDirections.actionDetailProkerFragmentToDivisiFragment(Integer.parseInt(proker.getProkerId()));
+            Navigation.findNavController(view).navigate(action);
+        }
     }
 
 //    @Override

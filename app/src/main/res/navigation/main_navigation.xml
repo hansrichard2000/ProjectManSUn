@@ -17,7 +17,8 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_berandaFragment"
-            app:destination="@id/berandaFragment" />
+            app:destination="@id/berandaFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -53,9 +54,6 @@
         <argument
             android:name="periodeId"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_prokerFragment_to_berandaFragment"
-            app:destination="@id/berandaFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailProkerFragment"
@@ -77,6 +75,9 @@
         <action
             android:id="@+id/action_divisiFragment_to_tugasFragment"
             app:destination="@id/tugasFragment" />
+        <argument
+            android:name="prokerId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/tugasFragment"
