@@ -130,6 +130,12 @@ public class BerandaFragment extends Fragment {
         }
     }
 
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        getActivity().getViewModelStore().clear();
+//    }
+
     @Override
     public void onDetach() {
         super.onDetach();

@@ -53,6 +53,9 @@
         <argument
             android:name="periodeId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_prokerFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailProkerFragment"
@@ -62,6 +65,9 @@
         <action
             android:id="@+id/action_detailProkerFragment_to_divisiFragment"
             app:destination="@id/divisiFragment" />
+        <argument
+            android:name="detailProker"
+            app:argType="com.uc.projectmansun.model.local.Proker" />
     </fragment>
     <fragment
         android:id="@+id/divisiFragment"

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uc.projectmansun.R;
@@ -38,6 +40,10 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
     public void onBindViewHolder(@NonNull ProkerAdapter.CardViewViewHolder holder, int position) {
         Proker proker = prokerList.get(position);
         holder.nama_proker.setText(proker.getNama_proker());
+        holder.itemView.setOnClickListener(view -> {
+            ProkerFragmentDirections.ActionProkerFragmentToDetailProkerFragment action = ProkerFragmentDirections.actionProkerFragmentToDetailProkerFragment(proker);
+            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     @Override

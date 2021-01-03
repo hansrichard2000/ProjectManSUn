@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -99,7 +101,6 @@ public class ProkerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         showLoading(true);
-        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Proker");
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         prokerViewModel = ViewModelProviders.of(requireActivity()).get(ProkerViewModel.class);
@@ -116,6 +117,8 @@ public class ProkerFragment extends Fragment {
         @Override
         public void onChanged(List<Proker> prokers) {
             if (prokers != null){
+                Proker proker = prokers.get(0);
+                Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Proker "+proker.getTahun_periode());
                 prokerAdapter.setProkerList(prokers);
                 prokerAdapter.notifyDataSetChanged();
                 rv_proker.setAdapter(prokerAdapter);

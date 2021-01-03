@@ -1,12 +1,16 @@
 package com.uc.projectmansun.model.local;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Proker {
+public class Proker implements Parcelable{
     @SerializedName("id")
     String prokerId;
+
+    @SerializedName("tahun_periode")
+    String tahun_periode;
 
     @SerializedName("nama_proker")
     String nama_proker;
@@ -44,12 +48,96 @@ public class Proker {
     @SerializedName("created_by")
     String created_by;
 
+    public Proker(){
+
+    }
+
+    public Proker(String prokerId, String tahun_periode, String nama_proker, int periode_id,
+                  int status_proker_id, String deskripsi_proker, String tanggal_mulai,
+                  String tanggal_akhir, int pemasukan, int pengeluaran, String medsos,
+                  String proposal, String lpj, String created_by) {
+        this.prokerId = prokerId;
+        this.tahun_periode = tahun_periode;
+        this.nama_proker = nama_proker;
+        this.periode_id = periode_id;
+        this.status_proker_id = status_proker_id;
+        this.deskripsi_proker = deskripsi_proker;
+        this.tanggal_mulai = tanggal_mulai;
+        this.tanggal_akhir = tanggal_akhir;
+        this.pemasukan = pemasukan;
+        this.pengeluaran = pengeluaran;
+        this.medsos = medsos;
+        this.proposal = proposal;
+        this.lpj = lpj;
+        this.created_by = created_by;
+    }
+
+    protected Proker(Parcel in) {
+        prokerId = in.readString();
+        tahun_periode = in.readString();
+        nama_proker = in.readString();
+        periode_id = in.readInt();
+        status_proker_id = in.readInt();
+        deskripsi_proker = in.readString();
+        tanggal_mulai = in.readString();
+        tanggal_akhir = in.readString();
+        pemasukan = in.readInt();
+        pengeluaran = in.readInt();
+        medsos = in.readString();
+        proposal = in.readString();
+        lpj = in.readString();
+        created_by = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(prokerId);
+        dest.writeString(tahun_periode);
+        dest.writeString(nama_proker);
+        dest.writeInt(periode_id);
+        dest.writeInt(status_proker_id);
+        dest.writeString(deskripsi_proker);
+        dest.writeString(tanggal_mulai);
+        dest.writeString(tanggal_akhir);
+        dest.writeInt(pemasukan);
+        dest.writeInt(pengeluaran);
+        dest.writeString(medsos);
+        dest.writeString(proposal);
+        dest.writeString(lpj);
+        dest.writeString(created_by);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Proker> CREATOR = new Creator<Proker>() {
+        @Override
+        public Proker createFromParcel(Parcel in) {
+            return new Proker(in);
+        }
+
+        @Override
+        public Proker[] newArray(int size) {
+            return new Proker[size];
+        }
+    };
+
     public String getProkerId() {
         return prokerId;
     }
 
     public void setProkerId(String prokerId) {
         this.prokerId = prokerId;
+    }
+
+    public String getTahun_periode() {
+        return tahun_periode;
+    }
+
+    public void setTahun_periode(String tahun_periode) {
+        this.tahun_periode = tahun_periode;
     }
 
     public String getNama_proker() {
