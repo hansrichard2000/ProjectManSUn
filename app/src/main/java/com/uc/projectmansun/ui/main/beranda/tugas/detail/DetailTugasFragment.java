@@ -122,7 +122,7 @@ public class DetailTugasFragment extends Fragment {
                 break;
             case "2":
                 status_task.setText(R.string.submitted);
-                status_task.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.tugas_status_yellow));
+                status_task.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.tugas_status_blue));
                 break;
             case "3":
                 status_task.setText(R.string.approved);

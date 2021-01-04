@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import com.uc.projectmansun.model.local.Proker;
 
 import java.util.List;
 
-public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewViewHolder>  {
+public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewViewHolder> {
     private Context context;
     private List<Proker> prokerList;
 
@@ -40,6 +41,15 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
     public void onBindViewHolder(@NonNull ProkerAdapter.CardViewViewHolder holder, int position) {
         Proker proker = prokerList.get(position);
         holder.nama_proker.setText(proker.getNama_proker());
+        if (proker.getStatus_proker_id() == 1) {
+            holder.label.setImageResource(R.drawable.proker_label_blue);
+            //kalau gak berhasil, artinya pake setBackgroundResource()
+        } else if (proker.getStatus_proker_id() == 2) {
+            holder.label.setImageResource(R.drawable.proker_label_green);
+        } else if (proker.getStatus_proker_id() == 3) {
+            holder.label.setImageResource(R.drawable.proker_label_red);
+        }
+
         holder.itemView.setOnClickListener(view -> {
             ProkerFragmentDirections.ActionProkerFragmentToDetailProkerFragment action = ProkerFragmentDirections.actionProkerFragmentToDetailProkerFragment(proker);
             Navigation.findNavController(view).navigate(action);
@@ -53,9 +63,12 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         private TextView nama_proker;
+        private ImageView label;
+
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
             nama_proker = itemView.findViewById(R.id.cv_judul_proker);
+            label = itemView.findViewById(R.id.cv_label_proker);
         }
     }
 }
