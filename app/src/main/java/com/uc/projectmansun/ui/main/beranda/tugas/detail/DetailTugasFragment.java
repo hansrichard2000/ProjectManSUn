@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -114,7 +115,24 @@ public class DetailTugasFragment extends Fragment {
         deskripsi_tugas.setText(task.getDeskripsi());
         tanggal_akhir.setText(task.getDeadline());
         link_hasil_kerja.setText(task.getLink_hasil_kerja());
-        status_task.setText(task.getStatus_task_id());
+        switch (task.getStatus_task_id()) {
+            case "1":
+                status_task.setText(R.string.not_submitted);
+                status_task.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.tugas_status_grey));
+                break;
+            case "2":
+                status_task.setText(R.string.submitted);
+                status_task.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.tugas_status_yellow));
+                break;
+            case "3":
+                status_task.setText(R.string.approved);
+                status_task.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.tugas_status_green));
+                break;
+            case "4":
+                status_task.setText(R.string.rejected);
+                status_task.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.tugas_status_red));
+                break;
+        }
     }
 
     @Override

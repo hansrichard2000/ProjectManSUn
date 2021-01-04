@@ -16,4 +16,8 @@
     <string name="saranmasukan">Saran dan Masukan</string>
     <string name="setting">Pengaturan</string>
     <string name="keluar">Keluar</string>
+    <string name="not_submitted">Not Submitted</string>
+    <string name="submitted">Keluar</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
 </resources>
