@@ -112,6 +112,9 @@
             android:name="profil"
             app:argType="com.uc.projectmansun.model.local.Profil"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_profilFragment_to_roleFragment2"
+            app:destination="@id/roleFragment2" />
     </fragment>
     <fragment
         android:id="@+id/notifikasiFragment"
@@ -127,4 +130,9 @@
             android:id="@+id/action_dialog_loading_to_berandaFragment"
             app:destination="@id/berandaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/roleFragment2"
+        android:name="com.uc.projectmansun.ui.main.profil.role.RoleFragment"
+        android:label="fragment_role"
+        tools:layout="@layout/fragment_role" />
 </navigation>

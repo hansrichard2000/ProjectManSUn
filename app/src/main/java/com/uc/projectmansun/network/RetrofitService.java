@@ -2,6 +2,7 @@ package com.uc.projectmansun.network;
 
 import com.google.gson.JsonObject;
 import com.uc.projectmansun.model.response.DivisiResponse;
+import com.uc.projectmansun.model.response.DivisiRoleUserResponse;
 import com.uc.projectmansun.model.response.PeriodeResponse;
 import com.uc.projectmansun.model.response.ProfilResponse;
 import com.uc.projectmansun.model.response.ProkerResponse;
@@ -67,6 +68,10 @@ public class RetrofitService {
 
     public Call<ProfilResponse> getProfil(){
         return api.getProfil();
+    }
+
+    public Call<DivisiRoleUserResponse> getDivisiRoleUser(){
+        return api.getDivisiRoleUser();
     }
 
     public Call<DivisiResponse> getDivisi(int prokerId){

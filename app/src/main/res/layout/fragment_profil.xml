@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_profil">
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/role_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button6" />
+            app:layout_constraintTop_toBottomOf="@id/role_button" />
 
         <Button
             android:id="@+id/button7"

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_beranda">
+    android:background="@drawable/background_beranda"
+    tools:context=".ui.main.profil.role.RoleFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/rv_role"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/content_background_white"

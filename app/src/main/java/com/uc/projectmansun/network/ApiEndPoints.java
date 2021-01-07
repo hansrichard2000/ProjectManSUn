@@ -5,6 +5,7 @@ import com.uc.projectmansun.model.response.DivisiResponse;
 import com.uc.projectmansun.model.response.PeriodeResponse;
 import com.uc.projectmansun.model.response.ProfilResponse;
 import com.uc.projectmansun.model.response.ProkerResponse;
+import com.uc.projectmansun.model.response.DivisiRoleUserResponse;
 import com.uc.projectmansun.model.response.TaskResponse;
 import com.uc.projectmansun.model.response.TokenResponse;
 
@@ -39,6 +40,10 @@ public interface ApiEndPoints {
     @GET("profil")
     Call<ProfilResponse> getProfil();
 
+    @GET("role")
+    Call<DivisiRoleUserResponse> getDivisiRoleUser();
+
     @POST("api-logout")
     Call<JsonObject> logout();
+
 }

@@ -4,19 +4,40 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Divisi;
+import com.uc.projectmansun.model.local.DivisiRoleUser;
+import com.uc.projectmansun.model.local.Periode;
+import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.ui.main.beranda.BerandaAdapter;
+import com.uc.projectmansun.ui.main.beranda.BerandaViewModel;
 import com.uc.projectmansun.ui.main.profil.ProfilFragment;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
 
+import java.util.List;
+import java.util.Objects;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RoleFragment extends Fragment {
 
+    @BindView(R.id.rv_role)
+    RecyclerView rv_role;
 
+    private RoleViewModel roleViewModel;
+    private RoleAdapter roleAdapter;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,5 +91,38 @@ public class RoleFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("Roles");
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        roleViewModel = ViewModelProviders.of(requireActivity()).get(RoleViewModel.class);
+        roleViewModel.init(helper.getAccessToken());
+        roleViewModel.getDivisiRoleUser().observe(requireActivity(), observer);
+
+        rv_role.setLayoutManager(new LinearLayoutManager(getActivity()));
+        roleAdapter = new RoleAdapter(getActivity());
+
+    }
+
+    private Observer<List<DivisiRoleUser>> observer = new Observer<List<DivisiRoleUser>>() {
+        @Override
+        public void onChanged(List<DivisiRoleUser> drus) {
+            if (drus != null){
+                roleAdapter.setDRUList(drus);
+                roleAdapter.notifyDataSetChanged();
+                rv_role.setAdapter(roleAdapter);
+            }
+        }
+    };
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getViewModelStore().clear();
     }
 }
