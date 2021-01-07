@@ -5,7 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +17,13 @@ import android.widget.TextView;
 
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.model.local.Task;
+import com.uc.projectmansun.ui.MainActivity;
 import com.uc.projectmansun.ui.main.beranda.BerandaViewModel;
+import com.uc.projectmansun.ui.main.beranda.tugas.TugasAdapter;
 import com.uc.projectmansun.util.SharedPreferenceHelper;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +50,7 @@ public class JadwalFragment extends Fragment {
     private Task task;
     private JadwalViewModel jadwalViewModel;
     private SharedPreferenceHelper helper;
-    private List<Task> jadwalList;
+    private Task jadwalList;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -101,12 +106,24 @@ public class JadwalFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         jadwalViewModel = ViewModelProviders.of(requireActivity()).get(JadwalViewModel.class);
         jadwalViewModel.init(helper.getAccessToken());
-        jadwalViewModel.getJadwalTask();
+//        jadwalViewModel.getJadwalTask().observe(requireActivity(), observer);
 
-//        calendarView.setOnDateChangeListener((calendarView, i, i1, i2) -> {
-//            jumlah_tugas.setText();
-//        });
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+//        jadwalViewModel.getJadwalTask().observe(requireActivity(), observer);
+                nama_jadwal.setText(jadwalList.getJudul());
+            }
+        });
+
     }
 
+    private Observer<List<Task>> observer = new Observer<List<Task>>() {
+        @Override
+        public void onChanged(List<Task> tasks) {
+            jadwalList = tasks.get(0);
+        }
+
+    };
 
 }
