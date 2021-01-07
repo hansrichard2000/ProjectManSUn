@@ -11,7 +11,7 @@ public class DivisiRoleUser {
     String nama_role;
 
     @SerializedName("nama_divisi")
-    int nama_divisi;
+    String nama_divisi;
 
     public String getNama_proker() {
         return nama_proker;
@@ -29,11 +29,11 @@ public class DivisiRoleUser {
         this.nama_role = nama_role;
     }
 
-    public int getNama_divisi() {
+    public String getNama_divisi() {
         return nama_divisi;
     }
 
-    public void setNama_divisi(int nama_divisi) {
+    public void setNama_divisi(String nama_divisi) {
         this.nama_divisi = nama_divisi;
     }
 }

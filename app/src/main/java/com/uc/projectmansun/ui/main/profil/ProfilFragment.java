@@ -49,6 +49,9 @@ public class ProfilFragment extends Fragment {
     @BindView(R.id.profil_jurusan)
     TextView profil_jurusan;
 
+    @BindView(R.id.role_button)
+    Button role_button;
+
     @BindView(R.id.logout_button)
     Button logout;
 
@@ -144,6 +147,14 @@ public class ProfilFragment extends Fragment {
             }
         }
     };
+
+    @OnClick(R.id.role_button)
+    public void role(View view){
+        if (view.getId() == R.id.role_button){
+            NavDirections action = ProfilFragmentDirections.actionProfilFragmentToRoleFragment2();
+            Navigation.findNavController(view).navigate(action);
+        }
+    }
 
     @OnClick(R.id.logout_button)
     public void logout(View view) {

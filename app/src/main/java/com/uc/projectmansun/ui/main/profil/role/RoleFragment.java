@@ -115,6 +115,12 @@ public class RoleFragment extends Fragment {
     };
 
     @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity) getActivity()).getSupportActionBar().show();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         getActivity().getViewModelStore().clear();
@@ -123,6 +129,7 @@ public class RoleFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        ((MainActivity) getActivity()).getSupportActionBar().hide();
         getActivity().getViewModelStore().clear();
     }
 }
