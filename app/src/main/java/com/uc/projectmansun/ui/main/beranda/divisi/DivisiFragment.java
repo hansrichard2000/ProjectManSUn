@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class DivisiFragment extends Fragment {
     private DivisiViewModel divisiViewModel;
     private DivisiAdapter divisiAdapter;
     private SharedPreferenceHelper helper;
-
+    private static final String TAG = "DivisiFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -112,8 +113,13 @@ public class DivisiFragment extends Fragment {
         @Override
         public void onChanged(List<Divisi> divisis) {
             if (divisis != null){
-                Divisi divisi = divisis.get(0);
-                Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Divisi "+divisi.getNama_proker());
+                try {
+                    Divisi divisi = divisis.get(0);
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Divisi "+divisi.getNama_proker());
+                }catch (Exception e){
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("Belum Ada Divisi");
+                }
+
                 divisiAdapter.setDivisiList(divisis);
                 divisiAdapter.notifyDataSetChanged();
                 rv_divisi.setAdapter(divisiAdapter);

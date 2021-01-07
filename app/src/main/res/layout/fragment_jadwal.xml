@@ -29,7 +29,8 @@
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/logo_phone_background" />
+                android:background="@color/logo_phone_background"
+                android:theme="@style/MyCustomTheme" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -46,7 +47,7 @@
                 android:background="@color/mansun_yellow">
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/jumlah_tugas"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Jadwal 1/3"
@@ -97,7 +98,7 @@
                         android:paddingBottom="16dp">
 
                         <TextView
-                            android:id="@+id/textView27"
+                            android:id="@+id/nama_jadwal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -113,7 +114,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView28"
+                            android:id="@+id/deskripsi_jadwal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -126,7 +127,7 @@
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                            app:layout_constraintTop_toBottomOf="@+id/nama_jadwal" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </ScrollView>
 

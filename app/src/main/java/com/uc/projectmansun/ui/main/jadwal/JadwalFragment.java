@@ -5,12 +5,23 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Task;
+import com.uc.projectmansun.ui.main.beranda.BerandaViewModel;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +30,22 @@ import com.uc.projectmansun.R;
  */
 public class JadwalFragment extends Fragment {
 
+    @BindView(R.id.calendarView)
+    CalendarView calendarView;
+
+    @BindView(R.id.nama_jadwal)
+    TextView nama_jadwal;
+
+    @BindView(R.id.deskripsi_jadwal)
+    TextView deskripsi_jadwal;
+
+    @BindView(R.id.jumlah_tugas)
+    TextView jumlah_tugas;
+
+    private Task task;
+    private JadwalViewModel jadwalViewModel;
+    private SharedPreferenceHelper helper;
+    private List<Task> jadwalList;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,5 +96,17 @@ public class JadwalFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        jadwalViewModel = ViewModelProviders.of(requireActivity()).get(JadwalViewModel.class);
+        jadwalViewModel.init(helper.getAccessToken());
+        jadwalViewModel.getJadwalTask();
+
+//        calendarView.setOnDateChangeListener((calendarView, i, i1, i2) -> {
+//            jumlah_tugas.setText();
+//        });
     }
+
+
 }

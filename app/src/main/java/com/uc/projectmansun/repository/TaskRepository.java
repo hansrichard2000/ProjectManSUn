@@ -60,4 +60,28 @@ public class TaskRepository {
 
         return listTask;
     }
+
+    public MutableLiveData<List<Task>> getJadwalTask(){
+        MutableLiveData<List<Task>> listJadwalTask = new MutableLiveData<>();
+
+        apiService.getJadwalTask().enqueue(new Callback<TaskResponse>() {
+            @Override
+            public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                Log.d(TAG, "onResponse: "+response.code());
+                if (response.isSuccessful()){
+                    if (response.body() != null){
+                        Log.d(TAG, "onResponse" +response.body().getResults().size());
+                        listJadwalTask.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TaskResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+        return listJadwalTask;
+    }
 }

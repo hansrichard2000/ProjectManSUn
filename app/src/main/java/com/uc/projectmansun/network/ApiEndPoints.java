@@ -33,6 +33,9 @@ public interface ApiEndPoints {
     @GET("divisi/{divisi}")
     Call<TaskResponse> getTask(@Path("divisi") int divisiId);
 
+    @GET("jadwal")
+    Call<TaskResponse> getJadwalTask();
+
     @GET("profil")
     Call<ProfilResponse> getProfil();
 

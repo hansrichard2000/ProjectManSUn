@@ -77,6 +77,10 @@ public class RetrofitService {
         return api.getTask(divisiId);
     }
 
+    public Call<TaskResponse> getJadwalTask(){
+        return api.getJadwalTask();
+    }
+
     public Call<JsonObject> logout(){
         return api.logout();
     }

@@ -117,8 +117,13 @@ public class ProkerFragment extends Fragment {
         @Override
         public void onChanged(List<Proker> prokers) {
             if (prokers != null){
-                Proker proker = prokers.get(0);
-                Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Proker "+proker.getTahun_periode());
+                try {
+                    Proker proker = prokers.get(0);
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Proker "+proker.getTahun_periode());
+                }catch (Exception e){
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("Belum ada Proker");
+                }
+
                 prokerAdapter.setProkerList(prokers);
                 prokerAdapter.notifyDataSetChanged();
                 rv_proker.setAdapter(prokerAdapter);

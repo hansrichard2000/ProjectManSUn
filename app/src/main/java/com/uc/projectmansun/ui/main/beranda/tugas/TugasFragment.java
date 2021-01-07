@@ -109,8 +109,12 @@ public class TugasFragment extends Fragment {
         @Override
         public void onChanged(List<Task> tasks) {
             if (tasks != null){
-                Task task = tasks.get(0);
-                Objects.requireNonNull((MainActivity) requireActivity()).getSupportActionBar().setTitle("List Tugas "+task.getNama_divisi());
+                try {
+                    Task task = tasks.get(0);
+                    Objects.requireNonNull((MainActivity) requireActivity()).getSupportActionBar().setTitle("List Tugas "+task.getNama_divisi());
+                }catch (Exception e){
+                    Objects.requireNonNull((MainActivity) requireActivity()).getSupportActionBar().setTitle("Tidak ada Tugas");
+                }
 
                 tugasAdapter.setProkerList(tasks);
                 tugasAdapter.notifyDataSetChanged();
