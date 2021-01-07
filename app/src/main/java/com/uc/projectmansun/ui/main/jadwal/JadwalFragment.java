@@ -114,24 +114,43 @@ public class JadwalFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                for (int tes = 0; tes < jadwalList.size(); tes++){
-                    Log.d("Jadwal Fragment: ", "jadwalLists: "+jadwalList.get(tes).getDeadline());
-                    Log.d("Jadwal Fragment: ", "jadwalLists: "+year + "-" + (month+1) + "-" + dayOfMonth);
-                    if (jadwalList.get(tes).getDeadline().equals(year + "-" + (month+1) + "-" + dayOfMonth)){
+                String ye, mo, da; //year month date maksudnya
 
+                //ngeset year
+                ye = year + "";
+
+                //ngeset month
+                if(month < 10){
+                    mo = "0" + (month+ 1);
+                }else{
+                    mo = (month+1) + "";
+                }
+
+                //ngeset date
+                if (dayOfMonth<10){
+                    da = "0" + dayOfMonth;
+                }else{
+                    da = dayOfMonth + "";
+                }
+
+                for (int tes = 0; tes < jadwalList.size(); tes++){
+                    Log.d("Jadwal Fragment: ", "jadwalLists: " +jadwalList.get(tes).getDeadline());
+                    Log.d("Jadwal Fragment: ", "jadwalLists: " + ye + "-" + mo + "-" + da);
+                    if (jadwalList.get(tes).getDeadline().equals(ye + "-" + mo + "-" + da)){
                         todayJadwal.add(jadwalList.get(tes));
                     }
                 }
                 Log.d("Jadwal Fragment: ", "tasks : "+todayJadwal);
-                nama_jadwal.setText(todayJadwal.get(0).getJudul());
-                deskripsi_jadwal.setText(todayJadwal.get(0).getDeskripsi());
-                jumlah_tugas.setText("Jadwal " + (0+1) + "/" + todayJadwal.size());
+                nama_jadwal.setText(todayJadwal.get(currentIndex).getJudul());
+                deskripsi_jadwal.setText(todayJadwal.get(currentIndex).getDeskripsi());
+                jumlah_tugas.setText("Jadwal " + (currentIndex+1) + "/" + todayJadwal.size());
             }
         });
 
     }
 
     private Observer<List<Task>> observer = new Observer<List<Task>>() {
+
         @Override
         public void onChanged(List<Task> tasks) {
             jadwalList = tasks;
