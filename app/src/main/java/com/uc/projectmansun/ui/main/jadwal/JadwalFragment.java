@@ -52,7 +52,7 @@ public class JadwalFragment extends Fragment {
     private JadwalViewModel jadwalViewModel;
     private SharedPreferenceHelper helper;
     private List<Task> jadwalList;
-    private List<Task> todayJadwal;
+    private List<String> judul, deskripsi;
     private int currentIndex = 0;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -137,13 +137,16 @@ public class JadwalFragment extends Fragment {
                     Log.d("Jadwal Fragment: ", "jadwalLists: " +jadwalList.get(tes).getDeadline());
                     Log.d("Jadwal Fragment: ", "jadwalLists: " + ye + "-" + mo + "-" + da);
                     if (jadwalList.get(tes).getDeadline().equals(ye + "-" + mo + "-" + da)){
-                        todayJadwal.add(jadwalList.get(tes));
+//                        todayJadwal.add(jadwalList.get(tes));
+                        judul.add(jadwalList.get(tes).getJudul());
+                        deskripsi.add(jadwalList.get(tes).getDeskripsi());
                     }
                 }
-                Log.d("Jadwal Fragment: ", "tasks : "+todayJadwal);
-                nama_jadwal.setText(todayJadwal.get(currentIndex).getJudul());
-                deskripsi_jadwal.setText(todayJadwal.get(currentIndex).getDeskripsi());
-                jumlah_tugas.setText("Jadwal " + (currentIndex+1) + "/" + todayJadwal.size());
+//                Log.d("Jadwal Fragment: ", "tasks : "+todayJadwal);
+                currentIndex = 0;
+                nama_jadwal.setText(judul.get(currentIndex));
+                deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+//                jumlah_tugas.setText("Jadwal " + (currentIndex+1) + "/" + todayJadwal.size());
             }
         });
 
