@@ -23,6 +23,7 @@ import com.uc.projectmansun.ui.main.beranda.BerandaViewModel;
 import com.uc.projectmansun.ui.main.beranda.tugas.TugasAdapter;
 import com.uc.projectmansun.util.SharedPreferenceHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,7 +53,7 @@ public class JadwalFragment extends Fragment {
     private JadwalViewModel jadwalViewModel;
     private SharedPreferenceHelper helper;
     private List<Task> jadwalList;
-    private List<String> judul, deskripsi;
+    ArrayList<String> judul, deskripsi;
     private int currentIndex = 0;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -105,6 +106,8 @@ public class JadwalFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        judul = new ArrayList<String>();
+        deskripsi = new ArrayList<String>();
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         jadwalViewModel = ViewModelProviders.of(requireActivity()).get(JadwalViewModel.class);
@@ -115,7 +118,8 @@ public class JadwalFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String ye, mo, da; //year month date maksudnya
-
+                judul.clear();
+                deskripsi.clear();
                 //ngeset year
                 ye = year + "";
 
