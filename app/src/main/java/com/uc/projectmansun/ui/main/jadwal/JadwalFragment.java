@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.uc.projectmansun.R;
@@ -48,6 +49,12 @@ public class JadwalFragment extends Fragment {
 
     @BindView(R.id.jumlah_tugas)
     TextView jumlah_tugas;
+
+    @BindView(R.id.tombolKiri)
+    ImageButton tombol_kiri;
+
+    @BindView(R.id.tombolKanan)
+    ImageButton tombol_kanan;
 
     private Task task;
     private JadwalViewModel jadwalViewModel;
@@ -148,12 +155,51 @@ public class JadwalFragment extends Fragment {
                 }
 //                Log.d("Jadwal Fragment: ", "tasks : "+todayJadwal);
                 currentIndex = 0;
-                nama_jadwal.setText(judul.get(currentIndex));
-                deskripsi_jadwal.setText(deskripsi.get(currentIndex));
-//                jumlah_tugas.setText("Jadwal " + (currentIndex+1) + "/" + todayJadwal.size());
+
+                if (judul.size() == 0 || deskripsi.size() == 0){
+                    nama_jadwal.setText("Tidak ada Acara");
+                    deskripsi_jadwal.setText("Tidak ada Deskripsi");
+                }else{
+                    nama_jadwal.setText(judul.get(currentIndex));
+                    deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+                }
+
             }
         });
 
+        tombol_kiri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentIndex > 0){
+                    currentIndex--;
+
+                    if (judul.size() == 0 || deskripsi.size() == 0){
+                        nama_jadwal.setText("Tidak ada Acara");
+                        deskripsi_jadwal.setText("Tidak ada Deskripsi");
+                    }else{
+                        nama_jadwal.setText(judul.get(currentIndex));
+                        deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+                    }
+                }
+            }
+        });
+
+        tombol_kanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentIndex < judul.size() && currentIndex < deskripsi.size()){
+                    currentIndex++;
+
+                    if (judul.size() == 0 || deskripsi.size() == 0){
+                        nama_jadwal.setText("Tidak ada Acara");
+                        deskripsi_jadwal.setText("Tidak ada Deskripsi");
+                    }else{
+                        nama_jadwal.setText(judul.get(currentIndex));
+                        deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+                    }
+                }
+            }
+        });
     }
 
     private Observer<List<Task>> observer = new Observer<List<Task>>() {
