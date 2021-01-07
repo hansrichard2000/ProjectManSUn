@@ -55,13 +55,13 @@
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-                    app:layout_constraintStart_toEndOf="@+id/imageButton"
-                    app:layout_constraintTop_toTopOf="@+id/imageButton" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tombolKiri"
+                    app:layout_constraintEnd_toStartOf="@+id/tombolKanan"
+                    app:layout_constraintStart_toEndOf="@+id/tombolKiri"
+                    app:layout_constraintTop_toTopOf="@+id/tombolKiri" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/tombolKiri"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/tombolKanan"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
@@ -89,7 +89,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton">
+                    app:layout_constraintTop_toBottomOf="@+id/tombolKiri">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
