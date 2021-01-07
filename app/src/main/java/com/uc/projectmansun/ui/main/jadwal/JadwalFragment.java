@@ -1,5 +1,6 @@
 package com.uc.projectmansun.ui.main.jadwal;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -109,6 +110,7 @@ public class JadwalFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_jadwal, container, false);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -120,83 +122,85 @@ public class JadwalFragment extends Fragment {
         jadwalViewModel = ViewModelProviders.of(requireActivity()).get(JadwalViewModel.class);
         jadwalViewModel.init(helper.getAccessToken());
         jadwalViewModel.getJadwalTask().observe(requireActivity(), observer);
+        calendarView.setUnfocusedMonthDateColor(R.color.button_red);
+        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String ye, mo, da; //year month date maksudnya
-                judul.clear();
-                deskripsi.clear();
-                //ngeset year
-                ye = year + "";
+            String ye, mo, da; //year month date maksudnya
+            judul.clear();
+            deskripsi.clear();
+            //ngeset year
+            ye = year + "";
 
-                //ngeset month
-                if(month < 10){
-                    mo = "0" + (month+ 1);
-                }else{
-                    mo = (month+1) + "";
-                }
+            //ngeset month
+            if(month < 10){
+                mo = "0" + (month+ 1);
+            }else{
+                mo = (month+1) + "";
+            }
 
-                //ngeset date
-                if (dayOfMonth<10){
-                    da = "0" + dayOfMonth;
-                }else{
-                    da = dayOfMonth + "";
-                }
+            //ngeset date
+            if (dayOfMonth<10){
+                da = "0" + dayOfMonth;
+            }else{
+                da = dayOfMonth + "";
+            }
 
-                for (int tes = 0; tes < jadwalList.size(); tes++){
-                    Log.d("Jadwal Fragment: ", "jadwalLists: " +jadwalList.get(tes).getDeadline());
-                    Log.d("Jadwal Fragment: ", "jadwalLists: " + ye + "-" + mo + "-" + da);
-                    if (jadwalList.get(tes).getDeadline().equals(ye + "-" + mo + "-" + da)){
+            for (int tes = 0; tes < jadwalList.size(); tes++){
+//                    Log.d("Jadwal Fragment: ", "jadwalLists: " +jadwalList.get(tes).getDeadline());
+//                    Log.d("Jadwal Fragment: ", "jadwalLists: " + ye + "-" + mo + "-" + da);
+                if (jadwalList.get(tes).getDeadline().equals(ye + "-" + mo + "-" + da)){
 //                        todayJadwal.add(jadwalList.get(tes));
-                        judul.add(jadwalList.get(tes).getJudul());
-                        deskripsi.add(jadwalList.get(tes).getDeskripsi());
-                    }
+                    judul.add(jadwalList.get(tes).getJudul());
+                    deskripsi.add(jadwalList.get(tes).getDeskripsi());
                 }
+            }
 //                Log.d("Jadwal Fragment: ", "tasks : "+todayJadwal);
-                currentIndex = 0;
+            currentIndex = 0;
 
-                if (judul.size() == 0 || deskripsi.size() == 0){
-                    nama_jadwal.setText("Tidak ada Acara");
-                    deskripsi_jadwal.setText("Tidak ada Deskripsi");
-                }else{
+            if (judul.size() == 0 || deskripsi.size() == 0){
+                jumlah_tugas.setText("Tugas 0/0");
+                nama_jadwal.setText("Tidak ada tugas");
+                deskripsi_jadwal.setText("Tidak ada deskripsi");
+            }else{
+                jumlah_tugas.setText("Tugas "+(currentIndex+1)+"/"+judul.size());
+                nama_jadwal.setText(judul.get(currentIndex));
+                deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+            }
+
+        });
+
+        tombol_kiri.setOnClickListener(v -> {
+            if (currentIndex > 0){
+                currentIndex--;
+
+                try{
+                    jumlah_tugas.setText("Tugas "+(currentIndex+1)+"/"+judul.size());
+                    nama_jadwal.setText(judul.get(currentIndex));
+                    deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+
+                }catch (Exception e){
+                    currentIndex++;
+                    jumlah_tugas.setText("Tugas "+(currentIndex+1)+"/"+judul.size());
                     nama_jadwal.setText(judul.get(currentIndex));
                     deskripsi_jadwal.setText(deskripsi.get(currentIndex));
                 }
-
             }
         });
 
-        tombol_kiri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentIndex > 0){
+        tombol_kanan.setOnClickListener(v -> {
+            if (currentIndex < judul.size() && currentIndex < deskripsi.size()){
+                currentIndex++;
+
+                try{
+                    jumlah_tugas.setText("Tugas "+(currentIndex+1)+"/"+judul.size());
+                    nama_jadwal.setText(judul.get(currentIndex));
+                    deskripsi_jadwal.setText(deskripsi.get(currentIndex));
+
+                }catch (Exception e){
                     currentIndex--;
-
-                    if (judul.size() == 0 || deskripsi.size() == 0){
-                        nama_jadwal.setText("Tidak ada Acara");
-                        deskripsi_jadwal.setText("Tidak ada Deskripsi");
-                    }else{
-                        nama_jadwal.setText(judul.get(currentIndex));
-                        deskripsi_jadwal.setText(deskripsi.get(currentIndex));
-                    }
-                }
-            }
-        });
-
-        tombol_kanan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentIndex < judul.size() && currentIndex < deskripsi.size()){
-                    currentIndex++;
-
-                    if (judul.size() == 0 || deskripsi.size() == 0){
-                        nama_jadwal.setText("Tidak ada Acara");
-                        deskripsi_jadwal.setText("Tidak ada Deskripsi");
-                    }else{
-                        nama_jadwal.setText(judul.get(currentIndex));
-                        deskripsi_jadwal.setText(deskripsi.get(currentIndex));
-                    }
+                    jumlah_tugas.setText("Tugas "+(currentIndex+1)+"/"+judul.size());
+                    nama_jadwal.setText(judul.get(currentIndex));
+                    deskripsi_jadwal.setText(deskripsi.get(currentIndex));
                 }
             }
         });
@@ -211,5 +215,17 @@ public class JadwalFragment extends Fragment {
         }
 
     };
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getViewModelStore().clear();
+    }
 
 }
