@@ -50,7 +50,9 @@ public class JadwalFragment extends Fragment {
     private Task task;
     private JadwalViewModel jadwalViewModel;
     private SharedPreferenceHelper helper;
-    private Task jadwalList;
+    private List<Task> jadwalList;
+    private List<Task> todayJadwal;
+    private int currentIndex = 0;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -111,8 +113,15 @@ public class JadwalFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-//        jadwalViewModel.getJadwalTask().observe(requireActivity(), observer);
-                nama_jadwal.setText(jadwalList.getJudul());
+                for (int tes = 0; tes < jadwalList.size(); tes++){
+                    if (jadwalList.get(tes).getDeadline().equals(year + "-" + month + "-" + dayOfMonth)){
+                        todayJadwal.add(jadwalList.get(tes));
+                    }
+                }
+
+                nama_jadwal.setText(todayJadwal.get(currentIndex).getJudul());
+                deskripsi_jadwal.setText(todayJadwal.get(currentIndex).getDeskripsi());
+                jumlah_tugas.setText("Jadwal " + (currentIndex+1) + "/" + todayJadwal.size());
             }
         });
 
@@ -121,7 +130,7 @@ public class JadwalFragment extends Fragment {
     private Observer<List<Task>> observer = new Observer<List<Task>>() {
         @Override
         public void onChanged(List<Task> tasks) {
-            jadwalList = tasks.get(0);
+            jadwalList = tasks;
         }
 
     };
