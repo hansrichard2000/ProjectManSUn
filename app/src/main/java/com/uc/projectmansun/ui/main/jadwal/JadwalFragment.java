@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,20 +109,23 @@ public class JadwalFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         jadwalViewModel = ViewModelProviders.of(requireActivity()).get(JadwalViewModel.class);
         jadwalViewModel.init(helper.getAccessToken());
-//        jadwalViewModel.getJadwalTask().observe(requireActivity(), observer);
+        jadwalViewModel.getJadwalTask().observe(requireActivity(), observer);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 for (int tes = 0; tes < jadwalList.size(); tes++){
-                    if (jadwalList.get(tes).getDeadline().equals(year + "-" + month + "-" + dayOfMonth)){
+                    Log.d("Jadwal Fragment: ", "jadwalLists: "+jadwalList.get(tes).getDeadline());
+                    Log.d("Jadwal Fragment: ", "jadwalLists: "+year + "-" + (month+1) + "-" + dayOfMonth);
+                    if (jadwalList.get(tes).getDeadline().equals(year + "-" + (month+1) + "-" + dayOfMonth)){
+
                         todayJadwal.add(jadwalList.get(tes));
                     }
                 }
-
-                nama_jadwal.setText(todayJadwal.get(currentIndex).getJudul());
-                deskripsi_jadwal.setText(todayJadwal.get(currentIndex).getDeskripsi());
-                jumlah_tugas.setText("Jadwal " + (currentIndex+1) + "/" + todayJadwal.size());
+                Log.d("Jadwal Fragment: ", "tasks : "+todayJadwal);
+                nama_jadwal.setText(todayJadwal.get(0).getJudul());
+                deskripsi_jadwal.setText(todayJadwal.get(0).getDeskripsi());
+                jumlah_tugas.setText("Jadwal " + (0+1) + "/" + todayJadwal.size());
             }
         });
 
@@ -131,6 +135,7 @@ public class JadwalFragment extends Fragment {
         @Override
         public void onChanged(List<Task> tasks) {
             jadwalList = tasks;
+            Log.d("Jadwal Fragment: ", "tasks : "+jadwalList);
         }
 
     };
