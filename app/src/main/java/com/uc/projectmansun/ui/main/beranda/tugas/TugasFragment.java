@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.uc.projectmansun.R;
@@ -20,6 +21,7 @@ import com.uc.projectmansun.model.local.Task;
 import com.uc.projectmansun.ui.MainActivity;
 import com.uc.projectmansun.util.SharedPreferenceHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +40,24 @@ public class TugasFragment extends Fragment {
 
     @BindView(R.id.loading_task)
     ProgressBar loading_task;
+
+    @BindView(R.id.button_all)
+    Button button_all;
+
+    @BindView(R.id.button_approved)
+    Button button_approved;
+
+    @BindView(R.id.button_rejected)
+    Button button_rejected;
+
+    @BindView(R.id.button_submitted)
+    Button button_submitted;
+
+    @BindView(R.id.button_not_submitted)
+    Button button_not_submitted;
+
+    private ArrayList<Task> tugasList;
+    private int currentFilter = 0;
 
     private TugasViewModel tugasViewModel;
     private TugasAdapter tugasAdapter;
@@ -103,33 +123,84 @@ public class TugasFragment extends Fragment {
 
         rv_tugas.setLayoutManager(new LinearLayoutManager(getActivity()));
         tugasAdapter = new TugasAdapter(getActivity());
+
+        button_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentFilter = 0;
+                //tugasList.clear();
+            }
+        });
+
+        button_not_submitted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentFilter = 1;
+                //tugasList.clear();
+            }
+        });
+
+        button_submitted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentFilter = 2;
+                //tugasList.clear();
+            }
+        });
+
+        button_approved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentFilter = 3;
+                //tugasList.clear();
+            }
+        });
+
+        button_rejected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentFilter = 4;
+                //tugasList.clear();
+            }
+        });
+
     }
 
     private Observer<List<Task>> observer = new Observer<List<Task>>() {
         @Override
         public void onChanged(List<Task> tasks) {
-            if (tasks != null){
+            tugasList.clear();
+            for (int i = 0; i < tasks.size(); i++) {
+
+                if (currentFilter == 0) {
+                    tugasList.add(tasks.get(i));
+                } else if (Integer.parseInt(tasks.get(i).getStatus_task_id()) == currentFilter) {
+                    tugasList.add(tasks.get(i));
+                }
+            }
+
+            if (tasks != null) {
                 try {
-                    Task task = tasks.get(0);
-                    Objects.requireNonNull((MainActivity) requireActivity()).getSupportActionBar().setTitle("List Tugas "+task.getNama_divisi());
-                }catch (Exception e){
+                    Task task = tugasList.get(0);
+                    Objects.requireNonNull((MainActivity) requireActivity()).getSupportActionBar().setTitle("List Tugas " + task.getNama_divisi());
+                } catch (Exception e) {
                     Objects.requireNonNull((MainActivity) requireActivity()).getSupportActionBar().setTitle("Tidak ada Tugas");
                 }
 
-                tugasAdapter.setProkerList(tasks);
+                tugasAdapter.setProkerList(tugasList);
                 tugasAdapter.notifyDataSetChanged();
                 rv_tugas.setAdapter(tugasAdapter);
                 showLoading(false);
             }
+
         }
     };
 
     private void showLoading(boolean state) {
-        if (state){
+        if (state) {
             rv_tugas.setVisibility(View.GONE);
             loading_task.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             rv_tugas.setVisibility(View.VISIBLE);
             loading_task.setVisibility(View.GONE);
         }
