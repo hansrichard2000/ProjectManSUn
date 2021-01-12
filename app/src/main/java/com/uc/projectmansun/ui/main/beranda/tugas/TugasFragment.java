@@ -56,7 +56,7 @@ public class TugasFragment extends Fragment {
     @BindView(R.id.button_not_submitted)
     Button button_not_submitted;
 
-    private ArrayList<Task> tugasList;
+    private ArrayList<Task> tugasList = new ArrayList<>();
     private int currentFilter = 0;
 
     private TugasViewModel tugasViewModel;
