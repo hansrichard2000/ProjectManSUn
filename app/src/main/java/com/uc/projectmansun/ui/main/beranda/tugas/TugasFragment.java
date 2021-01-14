@@ -128,6 +128,7 @@ public class TugasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 currentFilter = 0;
+                tugasViewModel.getTask(getArguments().getInt("divisiId")).observe(requireActivity(), observer);
                 //tugasList.clear();
             }
         });
@@ -136,6 +137,7 @@ public class TugasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 currentFilter = 1;
+                tugasViewModel.getTask(getArguments().getInt("divisiId")).observe(requireActivity(), observer);
                 //tugasList.clear();
             }
         });
@@ -144,6 +146,7 @@ public class TugasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 currentFilter = 2;
+                tugasViewModel.getTask(getArguments().getInt("divisiId")).observe(requireActivity(), observer);
                 //tugasList.clear();
             }
         });
@@ -152,6 +155,7 @@ public class TugasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 currentFilter = 3;
+                tugasViewModel.getTask(getArguments().getInt("divisiId")).observe(requireActivity(), observer);
                 //tugasList.clear();
             }
         });
@@ -160,6 +164,7 @@ public class TugasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 currentFilter = 4;
+                tugasViewModel.getTask(getArguments().getInt("divisiId")).observe(requireActivity(), observer);
                 //tugasList.clear();
             }
         });
