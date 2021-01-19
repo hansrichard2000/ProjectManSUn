@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.uc.projectmansun.util.Constants;
 
 public class Proker implements Parcelable{
     @SerializedName("id")
@@ -243,7 +244,7 @@ public class Proker implements Parcelable{
     }
 
     public String getGambar_proker() {
-        return gambar_proker;
+        return Constants.BASE_IMAGE_URL_PROKER + gambar_proker;
     }
 
     public void setGambar_proker(String gambar_proker) {
