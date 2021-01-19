@@ -2,13 +2,31 @@ package com.uc.projectmansun.ui.main.beranda.divisi;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Divisi;
+import com.uc.projectmansun.model.local.Proker;
+import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import java.util.List;
+import java.util.Objects;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +35,17 @@ import com.uc.projectmansun.R;
  */
 public class DivisiFragment extends Fragment {
 
+    @BindView(R.id.rv_divisi)
+    RecyclerView rv_divisi;
+
+    @BindView(R.id.progressBarDivisi)
+    ProgressBar loading;
+
+    private Proker proker;
+    private DivisiViewModel divisiViewModel;
+    private DivisiAdapter divisiAdapter;
+    private SharedPreferenceHelper helper;
+    private static final String TAG = "DivisiFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,5 +91,63 @@ public class DivisiFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_divisi, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        showLoading(true);
+
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        divisiViewModel = ViewModelProviders.of(requireActivity()).get(DivisiViewModel.class);
+        divisiViewModel.init(helper.getAccessToken());
+        divisiViewModel.getDivisi(getArguments().getInt("prokerId")).observe(requireActivity(), observer);
+
+        rv_divisi.setLayoutManager(new LinearLayoutManager(getActivity()));
+        divisiAdapter = new DivisiAdapter(getActivity());
+    }
+
+    private Observer<List<Divisi>> observer = new Observer<List<Divisi>>() {
+        @Override
+        public void onChanged(List<Divisi> divisis) {
+            if (divisis != null){
+                try {
+                    Divisi divisi = divisis.get(0);
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Divisi "+divisi.getNama_proker());
+                }catch (Exception e){
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("Belum Ada Divisi");
+                }
+
+                divisiAdapter.setDivisiList(divisis);
+                divisiAdapter.notifyDataSetChanged();
+                rv_divisi.setAdapter(divisiAdapter);
+                showLoading(false);
+            }
+        }
+    };
+
+    private void showLoading(Boolean state) {
+        if (state){
+            rv_divisi.setVisibility(View.GONE);
+            loading.setVisibility(View.VISIBLE);
+        }
+        else {
+            rv_divisi.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getViewModelStore().clear();
     }
 }
