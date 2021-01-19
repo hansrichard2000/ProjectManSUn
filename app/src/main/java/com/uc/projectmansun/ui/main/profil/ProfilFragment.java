@@ -15,9 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.model.local.Profil;
 import com.uc.projectmansun.ui.MainActivity;
@@ -48,6 +50,9 @@ public class ProfilFragment extends Fragment {
 
     @BindView(R.id.profil_jurusan)
     TextView profil_jurusan;
+
+    @BindView(R.id.profil_img)
+    ImageView profil_img;
 
     @BindView(R.id.role_button)
     Button role_button;
@@ -140,6 +145,7 @@ public class ProfilFragment extends Fragment {
         public void onChanged(List<Profil> profils) {
             if (profils != null){
                 Profil profil = profils.get(0);
+                Glide.with(getView()).load(profil.getGambar_profil()).centerCrop().into(profil_img);
                 profil_name.setText(profil.getUser_name());
                 profil_email.setText(profil.getUser_email());
                 profil_nim.setText(profil.getUser_nim());

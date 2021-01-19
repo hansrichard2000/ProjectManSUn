@@ -12,6 +12,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.model.local.Proker;
 
@@ -40,6 +41,7 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
     @Override
     public void onBindViewHolder(@NonNull ProkerAdapter.CardViewViewHolder holder, int position) {
         Proker proker = prokerList.get(position);
+        Glide.with(context).load(proker.getGambar_proker()).centerCrop().into(holder.foto_proker);
         holder.nama_proker.setText(proker.getNama_proker());
         if (proker.getStatus_proker_id() == 1) {
             holder.label.setImageResource(R.drawable.proker_label_blue);
@@ -71,7 +73,7 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
             super(itemView);
             nama_proker = itemView.findViewById(R.id.cv_judul_proker);
             label = itemView.findViewById(R.id.cv_label_proker);
-            label = itemView.findViewById(R.id.cv_label_proker);
+            foto_proker = itemView.findViewById(R.id.cv_foto_proker);
         }
     }
 }

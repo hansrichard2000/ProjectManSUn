@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.uc.projectmansun.util.Constants;
 
 public class Profil implements Parcelable {
     @SerializedName("student_id")
@@ -127,7 +128,7 @@ public class Profil implements Parcelable {
     }
 
     public String getGambar_profil() {
-        return gambar_profil;
+        return Constants.BASE_IMAGE_URL_PROFILE + gambar_profil;
     }
 
     public void setGambar_profil(String gambar_profil) {
