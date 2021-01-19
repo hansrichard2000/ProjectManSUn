@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,9 @@ public class ProfilFragment extends Fragment {
 
     @BindView(R.id.logout_button)
     Button logout;
+
+    @BindView(R.id.loading_profil)
+    ProgressBar loading_profile;
 
     private Profil profil;
     private ProfilViewModel profilViewModel;
@@ -123,6 +127,7 @@ public class ProfilFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        showLoading(true);
         Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
@@ -138,6 +143,24 @@ public class ProfilFragment extends Fragment {
 //            }
 //
 //        }
+
+    }
+
+    private void showLoading(boolean state) {
+        if (state){
+            profil_name.setVisibility(View.GONE);
+            profil_email.setVisibility(View.GONE);
+            profil_nim.setVisibility(View.GONE);
+            profil_jurusan.setVisibility(View.GONE);
+            loading_profile.setVisibility(View.VISIBLE);
+        }
+        else {
+            profil_name.setVisibility(View.VISIBLE);
+            profil_email.setVisibility(View.VISIBLE);
+            profil_nim.setVisibility(View.VISIBLE);
+            profil_jurusan.setVisibility(View.VISIBLE);
+            loading_profile.setVisibility(View.GONE);
+        }
 
     }
 
@@ -165,6 +188,7 @@ public class ProfilFragment extends Fragment {
                 profil_email.setText(profil.getUser_email());
                 profil_nim.setText(profil.getUser_nim());
                 profil_jurusan.setText(profil.getDepartement_name());
+                showLoading(false);
             }
         }
     };
@@ -194,7 +218,7 @@ public class ProfilFragment extends Fragment {
     @OnClick(R.id.help_button)
     public void help(View view) {
         if (view.getId() == R.id.help_button){
-            Intent intent = new Intent(String.valueOf(view.getContext()), Uri.parse("https://www.google.com/"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/"));
             startActivity(intent);
         }
     }

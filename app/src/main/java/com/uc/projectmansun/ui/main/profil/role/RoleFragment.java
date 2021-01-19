@@ -35,6 +35,9 @@ public class RoleFragment extends Fragment {
     @BindView(R.id.rv_role)
     RecyclerView rv_role;
 
+    @BindView(R.id.loading_role)
+    ProgressBar loading_role;
+
     private RoleViewModel roleViewModel;
     private RoleAdapter roleAdapter;
     private SharedPreferenceHelper helper;
@@ -90,7 +93,7 @@ public class RoleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
+        showLoading(true);
         Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("Roles");
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
@@ -103,6 +106,16 @@ public class RoleFragment extends Fragment {
 
     }
 
+    private void showLoading(boolean state) {
+        if (state){
+            rv_role.setVisibility(View.GONE);
+            loading_role.setVisibility(View.VISIBLE);
+        }else{
+            rv_role.setVisibility(View.VISIBLE);
+            loading_role.setVisibility(View.GONE);
+        }
+    }
+
     private Observer<List<DivisiRoleUser>> observer = new Observer<List<DivisiRoleUser>>() {
         @Override
         public void onChanged(List<DivisiRoleUser> drus) {
@@ -110,6 +123,7 @@ public class RoleFragment extends Fragment {
                 roleAdapter.setDRUList(drus);
                 roleAdapter.notifyDataSetChanged();
                 rv_role.setAdapter(roleAdapter);
+                showLoading(false);
             }
         }
     };
