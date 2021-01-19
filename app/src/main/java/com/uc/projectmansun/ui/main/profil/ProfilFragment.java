@@ -218,7 +218,7 @@ public class ProfilFragment extends Fragment {
     @OnClick(R.id.help_button)
     public void help(View view) {
         if (view.getId() == R.id.help_button){
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.canva.com/design/DAETB7PB8OM/obJNAWDfmn_UBfmNYJLQMw/view?utm_content=DAETB7PB8OM&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton"));
             startActivity(intent);
         }
     }
