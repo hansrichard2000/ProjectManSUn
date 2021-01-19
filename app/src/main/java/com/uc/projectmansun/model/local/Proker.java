@@ -48,6 +48,9 @@ public class Proker implements Parcelable{
     @SerializedName("created_by")
     String created_by;
 
+    @SerializedName("gambar_proker")
+    String gambar_proker;
+
     public Proker(){
 
     }
@@ -55,7 +58,7 @@ public class Proker implements Parcelable{
     public Proker(String prokerId, String tahun_periode, String nama_proker, int periode_id,
                   int status_proker_id, String deskripsi_proker, String tanggal_mulai,
                   String tanggal_akhir, int pemasukan, int pengeluaran, String medsos,
-                  String proposal, String lpj, String created_by) {
+                  String proposal, String lpj, String created_by, String gambar_proker) {
         this.prokerId = prokerId;
         this.tahun_periode = tahun_periode;
         this.nama_proker = nama_proker;
@@ -70,6 +73,7 @@ public class Proker implements Parcelable{
         this.proposal = proposal;
         this.lpj = lpj;
         this.created_by = created_by;
+        this.gambar_proker = gambar_proker;
     }
 
     protected Proker(Parcel in) {
@@ -87,6 +91,7 @@ public class Proker implements Parcelable{
         proposal = in.readString();
         lpj = in.readString();
         created_by = in.readString();
+        gambar_proker = in.readString();
     }
 
     @Override
@@ -105,6 +110,7 @@ public class Proker implements Parcelable{
         dest.writeString(proposal);
         dest.writeString(lpj);
         dest.writeString(created_by);
+        dest.writeString(gambar_proker);
     }
 
     @Override
@@ -234,5 +240,13 @@ public class Proker implements Parcelable{
 
     public void setCreated_by(String created_by) {
         this.created_by = created_by;
+    }
+
+    public String getGambar_proker() {
+        return gambar_proker;
+    }
+
+    public void setGambar_proker(String gambar_proker) {
+        this.gambar_proker = gambar_proker;
     }
 }

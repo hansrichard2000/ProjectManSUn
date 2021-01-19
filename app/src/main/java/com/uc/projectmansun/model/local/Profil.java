@@ -18,19 +18,27 @@ public class Profil implements Parcelable {
     @SerializedName("nim")
     String user_nim;
 
+    @SerializedName("nip")
+    String user_nip;
+
     @SerializedName("departement_name")
     String departement_name;
+
+    @SerializedName("gambar_profil")
+    String gambar_profil;
 
     public Profil(){
 
     }
 
-    public Profil(String student_id, String user_name, String user_email, String user_nim, String departement_name) {
+    public Profil(String student_id, String user_name, String user_email, String user_nim, String user_nip, String departement_name, String gambar_profil) {
         this.student_id = student_id;
         this.user_name = user_name;
         this.user_email = user_email;
         this.user_nim = user_nim;
+        this.user_nip = user_nip;
         this.departement_name = departement_name;
+        this.gambar_profil = gambar_profil;
     }
 
     protected Profil(Parcel in) {
@@ -38,7 +46,9 @@ public class Profil implements Parcelable {
         user_name = in.readString();
         user_email = in.readString();
         user_nim = in.readString();
+        user_nip = in.readString();
         departement_name = in.readString();
+        gambar_profil = in.readString();
     }
 
     @Override
@@ -48,6 +58,7 @@ public class Profil implements Parcelable {
         dest.writeString(user_email);
         dest.writeString(user_nim);
         dest.writeString(departement_name);
+        dest.writeString(gambar_profil);
     }
 
     @Override
@@ -99,11 +110,27 @@ public class Profil implements Parcelable {
         this.user_nim = user_nim;
     }
 
+    public String getUser_nip() {
+        return user_nip;
+    }
+
+    public void setUser_nip(String user_nip) {
+        this.user_nip = user_nip;
+    }
+
     public String getDepartement_name() {
         return departement_name;
     }
 
     public void setDepartement_name(String departement_name) {
         this.departement_name = departement_name;
+    }
+
+    public String getGambar_profil() {
+        return gambar_profil;
+    }
+
+    public void setGambar_profil(String gambar_profil) {
+        this.gambar_profil = gambar_profil;
     }
 }

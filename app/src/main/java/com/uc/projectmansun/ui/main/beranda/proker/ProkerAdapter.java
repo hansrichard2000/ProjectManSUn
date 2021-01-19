@@ -50,6 +50,8 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
             holder.label.setImageResource(R.drawable.proker_label_red);
         }
 
+
+
         holder.itemView.setOnClickListener(view -> {
             ProkerFragmentDirections.ActionProkerFragmentToDetailProkerFragment action = ProkerFragmentDirections.actionProkerFragmentToDetailProkerFragment(proker);
             Navigation.findNavController(view).navigate(action);
@@ -63,11 +65,12 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         private TextView nama_proker;
-        private ImageView label;
+        private ImageView label, foto_proker;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
             nama_proker = itemView.findViewById(R.id.cv_judul_proker);
+            label = itemView.findViewById(R.id.cv_label_proker);
             label = itemView.findViewById(R.id.cv_label_proker);
         }
     }

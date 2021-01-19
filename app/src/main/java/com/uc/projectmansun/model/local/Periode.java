@@ -1,6 +1,7 @@
 package com.uc.projectmansun.model.local;
 
 import com.google.gson.annotations.SerializedName;
+import com.uc.projectmansun.util.Constants;
 
 public class Periode {
     @SerializedName("id")
@@ -35,7 +36,7 @@ public class Periode {
     }
 
     public String getGambar_periode() {
-        return gambar_periode;
+        return Constants.BASE_IMAGE_URL_PERIODE + gambar_periode;
     }
 
     public void setGambar_periode(String gambar_periode) {
