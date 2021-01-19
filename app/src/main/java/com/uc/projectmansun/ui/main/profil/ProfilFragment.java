@@ -1,5 +1,7 @@
 package com.uc.projectmansun.ui.main.profil;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -58,6 +60,9 @@ public class ProfilFragment extends Fragment {
 
     @BindView(R.id.role_button)
     Button role_button;
+
+    @BindView(R.id.help_button)
+    Button help_button;
 
     @BindView(R.id.logout_button)
     Button logout;
@@ -183,6 +188,14 @@ public class ProfilFragment extends Fragment {
                     Toast.makeText(ProfilFragment.this.getActivity(), s, Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+    }
+
+    @OnClick(R.id.help_button)
+    public void help(View view) {
+        if (view.getId() == R.id.help_button){
+            Intent intent = new Intent(String.valueOf(view.getContext()), Uri.parse("https://www.google.com/"));
+            startActivity(intent);
         }
     }
 
