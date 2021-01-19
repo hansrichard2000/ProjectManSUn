@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.model.local.Periode;
+import com.uc.projectmansun.util.Constants;
 
 import java.util.List;
 
@@ -41,7 +42,9 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
     @Override
     public void onBindViewHolder(@NonNull BerandaAdapter.CardViewViewHolder holder, int position) {
         Periode periode = periodeList.get(position);
-        Glide.with(context).load(periode.getGambar_periode()).centerCrop().into(holder.foto_periode);
+        if (!periode.getGambar_periode().equals(Constants.BASE_IMAGE_URL_PERIODE)){
+            Glide.with(context).load(periode.getGambar_periode()).centerCrop().into(holder.foto_periode);
+        }
         holder.tahun_periode.setText(periode.getTahun_periode());
         holder.nilai.setText(periode.getNilai());
         holder.itemView.setOnClickListener(view -> {

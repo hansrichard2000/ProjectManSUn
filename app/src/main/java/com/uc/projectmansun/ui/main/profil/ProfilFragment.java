@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.uc.projectmansun.R;
 import com.uc.projectmansun.model.local.Profil;
 import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.util.Constants;
 import com.uc.projectmansun.util.SharedPreferenceHelper;
 
 import java.util.List;
@@ -145,7 +146,9 @@ public class ProfilFragment extends Fragment {
         public void onChanged(List<Profil> profils) {
             if (profils != null){
                 Profil profil = profils.get(0);
-                Glide.with(getView()).load(profil.getGambar_profil()).centerCrop().into(profil_img);
+                if (!profil.getGambar_profil().equals(Constants.BASE_IMAGE_URL_PROFILE)){
+                    Glide.with(getView()).load(profil.getGambar_profil()).centerCrop().into(profil_img);
+                }
                 profil_name.setText(profil.getUser_name());
                 profil_email.setText(profil.getUser_email());
                 profil_nim.setText(profil.getUser_nim());
