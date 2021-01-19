@@ -9,6 +9,9 @@ public class Periode {
     @SerializedName("tahun_periode")
     String tahun_periode;
 
+    @SerializedName("gambar_periode")
+    String gambar_periode;
+
     @SerializedName("nilai")
     String nilai;
 
@@ -29,6 +32,14 @@ public class Periode {
 
     public void setTahun_periode(String tahun_periode) {
         this.tahun_periode = tahun_periode;
+    }
+
+    public String getGambar_periode() {
+        return gambar_periode;
+    }
+
+    public void setGambar_periode(String gambar_periode) {
+        this.gambar_periode = gambar_periode;
     }
 
     public String getNilai() {
