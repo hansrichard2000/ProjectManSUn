@@ -43,11 +43,12 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
     public void onBindViewHolder(@NonNull ProkerAdapter.CardViewViewHolder holder, int position) {
         Proker proker = prokerList.get(position);
 
-        if (!proker.getGambar_proker().equals(Constants.BASE_IMAGE_URL_PROKER)) {
+        if (!proker.getGambar_proker().equals(Constants.BASE_IMAGE_URL_PROKER+"null")) {
             Glide.with(context).load(proker.getGambar_proker()).centerCrop().into(holder.foto_proker);
-        } else {
-            Glide.with(context).load(Constants.BASE_IMAGE_URL_PROKER_DEFAULT).centerCrop().into(holder.foto_proker);
         }
+//        else {
+//            Glide.with(context).load(Constants.BASE_IMAGE_URL_PROKER_DEFAULT).centerCrop().into(holder.foto_proker);
+//        }
 
         holder.nama_proker.setText(proker.getNama_proker());
         if (proker.getStatus_proker_id() == 1) {

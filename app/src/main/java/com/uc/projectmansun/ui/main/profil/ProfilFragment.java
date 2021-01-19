@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,7 @@ public class ProfilFragment extends Fragment {
     private Profil profil;
     private ProfilViewModel profilViewModel;
     private SharedPreferenceHelper helper;
+    private static final String TAG = "ProfilFragment";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -146,11 +148,14 @@ public class ProfilFragment extends Fragment {
         public void onChanged(List<Profil> profils) {
             if (profils != null){
                 Profil profil = profils.get(0);
-                if (!profil.getGambar_profil().equals(Constants.BASE_IMAGE_URL_PROFILE)){
+                if (!profil.getGambar_profil().equals(Constants.BASE_IMAGE_URL_PROFILE + "null")){
+//                    Log.d(TAG, "onChanged: Masuk" + profil.getGambar_profil());
                     Glide.with(getView()).load(profil.getGambar_profil()).centerCrop().into(profil_img);
-                }else{
-                    Glide.with(getView()).load(Constants.BASE_IMAGE_URL_PROFILE_DEFAULT).centerCrop().into(profil_img);
                 }
+//                else{
+//                    Log.d(TAG, "onChanged: Tidak masuk");
+//                    Glide.with(getView()).load(Constants.BASE_IMAGE_URL_PROFILE_DEFAULT).centerCrop().into(profil_img);
+//                }
                 profil_name.setText(profil.getUser_name());
                 profil_email.setText(profil.getUser_email());
                 profil_nim.setText(profil.getUser_nim());
