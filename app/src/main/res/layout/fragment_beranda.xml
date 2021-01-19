@@ -3,7 +3,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/refresh_layout"
+android:id="@+id/refresh_layout_beranda"
     android:background="@drawable/background_beranda"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
