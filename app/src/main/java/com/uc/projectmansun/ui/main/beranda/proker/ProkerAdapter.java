@@ -45,6 +45,8 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
 
         if (!proker.getGambar_proker().equals(Constants.BASE_IMAGE_URL_PROKER)) {
             Glide.with(context).load(proker.getGambar_proker()).centerCrop().into(holder.foto_proker);
+        } else {
+            Glide.with(context).load(Constants.BASE_IMAGE_URL_PROKER_DEFAULT).centerCrop().into(holder.foto_proker);
         }
 
         holder.nama_proker.setText(proker.getNama_proker());

@@ -44,6 +44,8 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.CardView
         Periode periode = periodeList.get(position);
         if (!periode.getGambar_periode().equals(Constants.BASE_IMAGE_URL_PERIODE)){
             Glide.with(context).load(periode.getGambar_periode()).centerCrop().into(holder.foto_periode);
+        }else{
+            Glide.with(context).load(Constants.BASE_IMAGE_URL_PERIODE_DEFAULT).centerCrop().into(holder.foto_periode);
         }
         holder.tahun_periode.setText(periode.getTahun_periode());
         holder.nilai.setText(periode.getNilai());

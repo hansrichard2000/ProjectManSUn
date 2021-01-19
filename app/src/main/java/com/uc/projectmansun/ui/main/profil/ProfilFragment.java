@@ -148,6 +148,8 @@ public class ProfilFragment extends Fragment {
                 Profil profil = profils.get(0);
                 if (!profil.getGambar_profil().equals(Constants.BASE_IMAGE_URL_PROFILE)){
                     Glide.with(getView()).load(profil.getGambar_profil()).centerCrop().into(profil_img);
+                }else{
+                    Glide.with(getView()).load(Constants.BASE_IMAGE_URL_PROFILE_DEFAULT).centerCrop().into(profil_img);
                 }
                 profil_name.setText(profil.getUser_name());
                 profil_email.setText(profil.getUser_email());
