@@ -130,7 +130,7 @@
             app:layout_constraintTop_toBottomOf="@id/role_button" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/help_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             android:drawableLeft="@drawable/ic_baseline_live_help_24"
             android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
             android:drawablePadding="10dp"
-            android:text="Saran dan Masukan"
+            android:text="Bantuan"
             android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textColor="@color/black"
@@ -152,9 +152,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button7" />
+            app:layout_constraintTop_toBottomOf="@id/help_button" />
 
         <Button
             android:id="@+id/button8"
@@ -170,6 +171,7 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider9" />

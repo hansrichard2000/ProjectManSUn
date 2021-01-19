@@ -13,7 +13,8 @@
     <item
         android:id="@+id/notifikasiFragment"
         android:icon="@drawable/ic_baseline_notifications_24"
-        android:title="@string/notifikasi" />
+        android:title="@string/notifikasi"
+        android:visible="false" />
 
     <item
         android:id="@+id/profilFragment"
