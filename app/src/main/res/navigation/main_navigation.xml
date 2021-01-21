@@ -1,5 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/splashFragment">
 
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.uc.projectmansun.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_berandaFragment"
+            app:destination="@id/berandaFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.uc.projectmansun.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_dialog_loading"
+            app:destination="@id/dialog_loading" />
+    </fragment>
+    <fragment
+        android:id="@+id/berandaFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.BerandaFragment"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" >
+        <action
+            android:id="@+id/action_berandaFragment_to_prokerFragment"
+            app:destination="@id/prokerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jadwalFragment"
+        android:name="com.uc.projectmansun.ui.main.jadwal.JadwalFragment"
+        android:label="fragment_jadwal"
+        tools:layout="@layout/fragment_jadwal" />
+    <fragment
+        android:id="@+id/prokerFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.proker.ProkerFragment"
+        android:label="fragment_proker"
+        tools:layout="@layout/fragment_proker" >
+        <action
+            android:id="@+id/action_prokerFragment_to_detailProkerFragment"
+            app:destination="@id/detailProkerFragment" />
+        <argument
+            android:name="periodeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailProkerFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.proker.detail.DetailProkerFragment"
+        android:label="fragment_detail_proker"
+        tools:layout="@layout/fragment_detail_proker" >
+        <action
+            android:id="@+id/action_detailProkerFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
+        <argument
+            android:name="detailProker"
+            app:argType="com.uc.projectmansun.model.local.Proker" />
+    </fragment>
+    <fragment
+        android:id="@+id/divisiFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.divisi.DivisiFragment"
+        android:label="fragment_divisi"
+        tools:layout="@layout/fragment_divisi" >
+        <action
+            android:id="@+id/action_divisiFragment_to_tugasFragment"
+            app:destination="@id/tugasFragment" />
+        <argument
+            android:name="prokerId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/tugasFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.tugas.TugasFragment"
+        android:label="fragment_tugas"
+        tools:layout="@layout/fragment_tugas" >
+        <action
+            android:id="@+id/action_tugasFragment_to_detailTugasFragment"
+            app:destination="@id/detailTugasFragment" />
+        <argument
+            android:name="divisiId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailTugasFragment"
+        android:name="com.uc.projectmansun.ui.main.beranda.tugas.detail.DetailTugasFragment"
+        android:label="fragment_detail_tugas"
+        tools:layout="@layout/fragment_detail_tugas" >
+        <argument
+            android:name="detailTask"
+            app:argType="com.uc.projectmansun.model.local.Task" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.uc.projectmansun.ui.main.profil.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil" >
+        <action
+            android:id="@+id/action_profilFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <argument
+            android:name="profil"
+            app:argType="com.uc.projectmansun.model.local.Profil"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_profilFragment_to_roleFragment2"
+            app:destination="@id/roleFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/notifikasiFragment"
+        android:name="com.uc.projectmansun.ui.main.notifikasi.NotifikasiFragment"
+        android:label="fragment_notifikasi"
+        tools:layout="@layout/fragment_notifikasi" />
+    <fragment
+        android:id="@+id/dialog_loading"
+        android:name="com.uc.projectmansun.ui.dialog_loading"
+        android:label="loading_dialog"
+        tools:layout="@layout/loading_dialog" >
+        <action
+            android:id="@+id/action_dialog_loading_to_berandaFragment"
+            app:destination="@id/berandaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roleFragment2"
+        android:name="com.uc.projectmansun.ui.main.profil.role.RoleFragment"
+        android:label="fragment_role"
+        tools:layout="@layout/fragment_role" />
 </navigation>

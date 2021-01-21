@@ -2,13 +2,33 @@ package com.uc.projectmansun.ui.main.beranda.proker;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.uc.projectmansun.R;
+import com.uc.projectmansun.model.local.Periode;
+import com.uc.projectmansun.model.local.Proker;
+import com.uc.projectmansun.ui.MainActivity;
+import com.uc.projectmansun.util.SharedPreferenceHelper;
+
+import java.util.List;
+import java.util.Objects;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +36,18 @@ import com.uc.projectmansun.R;
  * create an instance of this fragment.
  */
 public class ProkerFragment extends Fragment {
+    private static final String TAG = "ProkerFragment";
+
+    @BindView(R.id.progressBarProker)
+    ProgressBar loading_bar;
+
+    @BindView(R.id.rv_proker)
+    RecyclerView rv_proker;
+
+    private Periode periode;
+    private ProkerViewModel prokerViewModel;
+    private ProkerAdapter prokerAdapter;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +94,70 @@ public class ProkerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_proker, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        showLoading(true);
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        prokerViewModel = ViewModelProviders.of(requireActivity()).get(ProkerViewModel.class);
+        prokerViewModel.init(helper.getAccessToken());
+//        Log.d(TAG, "periodeId : " + periode.getPeriodeId());
+        prokerViewModel.getProker(getArguments().getInt("periodeId")).observe(requireActivity(), observer);
+
+
+        rv_proker.setLayoutManager(new LinearLayoutManager(getActivity()));
+        prokerAdapter = new ProkerAdapter(getActivity());
+    }
+
+    private Observer<List<Proker>> observer = new Observer<List<Proker>>() {
+        @Override
+        public void onChanged(List<Proker> prokers) {
+            if (prokers != null){
+                try {
+                    Proker proker = prokers.get(0);
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("List Proker "+proker.getTahun_periode());
+                }catch (Exception e){
+                    Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setTitle("Belum ada Proker");
+                }
+
+                prokerAdapter.setProkerList(prokers);
+                prokerAdapter.notifyDataSetChanged();
+                rv_proker.setAdapter(prokerAdapter);
+                showLoading(false);
+            }
+        }
+    };
+
+    private void showLoading(Boolean state) {
+        if (state){
+            rv_proker.setVisibility(View.GONE);
+            loading_bar.setVisibility(View.VISIBLE);
+        }
+        else {
+            rv_proker.setVisibility(View.VISIBLE);
+            loading_bar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity)getActivity()).getSupportActionBar().show();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getViewModelStore().clear();
     }
 }

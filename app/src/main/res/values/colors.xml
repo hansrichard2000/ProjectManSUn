@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="silver">#C0C0C0</color>
 
     //Application Color
     <color name="mansun_yellow">#FFFFC42D</color>
@@ -21,4 +22,10 @@
     <color name="button_green">#FF6FC272</color>
     <color name="button_blue">#FF1789FC</color>
     <color name="button_red">#FFEB5757</color>
+
+    //Status Tugas Color
+    <color name="status_tugas_green">#FF68CC2A</color>
+    <color name="status_tugas_blue">#FF2A65FC</color>
+    <color name="status_tugas_red">#FFFB5C5C</color>
+    <color name="status_tugas_grey">#FFB5B5B5</color>
 </resources>

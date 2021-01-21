@@ -45,16 +45,18 @@
                 android:id="@+id/cv_judul_divisi"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="150dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="Judul Divisi"
                 android:textAlignment="inherit"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cv_label_divisi"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/cv_label_divisi"
