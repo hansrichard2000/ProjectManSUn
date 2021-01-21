@@ -52,12 +52,12 @@ public class ProkerAdapter extends RecyclerView.Adapter<ProkerAdapter.CardViewVi
 
         holder.nama_proker.setText(proker.getNama_proker());
         if (proker.getStatus_proker_id() == 1) {
-            holder.label.setImageResource(R.drawable.proker_label_blue);
+            holder.label.setImageResource(R.drawable.proker_label_red);
             //kalau gak berhasil, artinya pake setBackgroundResource()
         } else if (proker.getStatus_proker_id() == 2) {
-            holder.label.setImageResource(R.drawable.proker_label_green);
+            holder.label.setImageResource(R.drawable.proker_label_blue);
         } else if (proker.getStatus_proker_id() == 3) {
-            holder.label.setImageResource(R.drawable.proker_label_red);
+            holder.label.setImageResource(R.drawable.proker_label_green);
         }
 
 
