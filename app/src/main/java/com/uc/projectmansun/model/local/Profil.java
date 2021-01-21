@@ -25,7 +25,7 @@ public class Profil implements Parcelable {
     @SerializedName("departement_name")
     String departement_name;
 
-    @SerializedName("gambar_profil")
+    @SerializedName("photo")
     String gambar_profil;
 
     public Profil(){

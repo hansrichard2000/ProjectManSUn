@@ -177,8 +177,8 @@ public class ProfilFragment extends Fragment {
             if (profils != null){
                 Profil profil = profils.get(0);
                 if (!profil.getGambar_profil().equals(Constants.BASE_IMAGE_URL_PROFILE + "null")){
-//                    Log.d(TAG, "onChanged: Masuk" + profil.getGambar_profil());
-                    Glide.with(getView()).load(profil.getGambar_profil()).centerCrop().into(profil_img);
+                    Log.d(TAG, "onChanged: Masuk" + profil.getGambar_profil());
+                    Glide.with(getView()).load(profil.getGambar_profil()).into(profil_img);
                 }
 //                else{
 //                    Log.d(TAG, "onChanged: Tidak masuk");
